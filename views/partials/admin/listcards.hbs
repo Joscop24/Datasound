@@ -1,0 +1,92 @@
+{{!--
+Partials : ListCards
+--}}
+
+{{!-- Recherche par Username --}}
+<div class="mh100 ">
+
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="d-flex justify-content-center">
+                <div class="input-group mt-5 mb-3">
+                    <input type="text" class="form-control" placeholder="Recipient's username"
+                        aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <button class="btn btn-outline-light" type="button" id="button-addon2">Rechercher</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="d-flex justify-content-around flex-wrap">
+            {{!-- 1er Card --}}
+            {{#each db}}
+            <div class="d-flex justify-content-around mt-5">
+                <div class="card bg-dark box-shadow" style="width: 18rem;">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <img src="./assets/images/gazo.jpeg" class="rounded-circle img-card-admin">
+                            <h5 class="ms-4">{{this.username}}</h5>
+                        </div>
+                        <ul class="none-list mt-3">
+                            <li> {{this.name}}</li>
+                            <li> {{this.surname}}</li>
+                            <li>{{this.email}}</li>
+                        </ul>
+                    </div>
+
+
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                        data-bs-target="#staticBackdrop-{{this.username}}">
+                        <i class="fa-solid fa-trash fa-1x text-light"></i>
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="staticBackdrop-{{this.username}}" data-bs-backdrop="static" data-bs-keyboard="false"
+                        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content bg-dark">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdropLabel">Voulez vous Bannir {{this.username}}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Voulez vous vraiment Bannir ce compte ???
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Bien sur que non</button>
+
+                                <form action="/user/{{this.id}}?_method=DELETE" method="post">
+                                    <button type="submit" class="btn btn-primary">OUI, je le veux</button>
+                                </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+            {{/each}}
+
+
+
+
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center mt-5">
+                    <li class="page-item">
+                        <a class="page-link">Previous</a>
+                    </li>
+                    <li class="page-item "><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>

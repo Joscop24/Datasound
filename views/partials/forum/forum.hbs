@@ -1,0 +1,142 @@
+{{!--
+Partials : Forum
+--}}
+
+<!-- COMMENTAIRES -->
+
+<h3 class="text-center mb-4">COMMENTAIRES</h3>
+
+
+<div class="container mh100 resp-forum">
+    {{#each db}}
+    <div class="col-12 row border border-white box-shadow mt-4">
+        <div class="col-md-2  text-center">
+            <img src="./assets/images/default.png" alt="" class="img-custom rounded-circle mt-3">
+        </div>
+
+        <div class="col col-md-10 row">
+            {{#if user}}
+            <h2 class="d-flex align-items-center mt-2">{{../user.usename}}</h2>
+            <h2>COUCOU</h2>
+            {{else}}
+            <h2 class="d-flex align-items-center mt-2">N°{{this.id_comments}} </h2>
+            {{/if}}
+            <p>{{this.commentary}}</p>
+            {{!-- <img src="/assets/images/{{this.image}}" class="w-75 rounded-5" /> --}}
+
+            {{#ifImgExist this.image}}
+            <img src="/assets/images/{{../this.image}}" class="w-75 rounded-5" />
+            {{else }}
+            <p>pas d'image</p>
+            {{/ifImgExist}}
+            
+            <div class="col text-end mb-2">
+
+                <!-- Modal Répondre au Message -->
+                <button type="button" class="btn border-white text-white" data-bs-toggle="modal"
+                    data-bs-target="#RepondreModal">
+                    Répondre</button>
+                </button>
+
+                <div class="modal fade" id="RepondreModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog ">
+                        <div class="modal-content bg-dark">
+                            <div class="modal-header">
+                                <h5 class="modal-title " id="exampleModalLabel">Répondre aux
+                                    message de
+                                    ...
+                                </h5>
+                                <button type="button" class="btn-close bg-light" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body ">
+                                <textarea class="form-control bg-dark text-light" id="exampleFormControlTextarea1"
+                                    rows="3"></textarea>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Envoyer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Modal Modifier le Message -->
+                <button type="button" class="btn border-white" data-bs-toggle="modal"
+                    data-bs-target="#ChangeModal-{{this.id_comments}}">
+                    <i class="fa-solid fa-pen text-white"></i></button>
+                </button>
+
+                <div class="modal fade" id="ChangeModal-{{this.id_comments}}" tabindex="-1"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content bg-dark">
+                            <div class="modal-header">
+                                <h5 class="modal-title " id="exampleModalLabel">Modifier le
+                                    message - {{this.id_comments}}
+                                </h5>
+                                <button type="button" class="btn-close bg-light" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body text-black">
+                                <form action="/comments/{{this.id_comments}}?_method=PUT" method="post">
+                                    <input type="text" value="{{this.commentary}}"
+                                        class="form-control bg-dark text-light" name="newcommentary"></input>
+                            </div>
+                            {{!-- BOUTTONS CLOSE OR SAVE CHANGES --}}
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                                {{!-- <form action="/comments/{{this.id_comments}}?_method=PUT" method="post"> --}}
+                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                    {{!--
+                                </form> --}}
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                {{!-- Modal Supprimer le Message --}}
+
+                <button type="button" class="btn border-white" data-bs-toggle="modal"
+                    data-bs-target="#DeleteModal-{{this.id_comments}}"><i
+                        class="fa-solid fa-trash text-white"></i></button>
+
+                <div class="modal fade" id="DeleteModal-{{this.id_comments}}" tabindex="-1"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content bg-dark">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Suppresion du
+                                    message</h5>
+                                <button type="button" class="btn-close bg-light" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+
+
+                            <div class="modal-body">
+                                <p class="text-center">Voulez vous vraiment supprimer le message
+                                    ?? {{this.id_comments}}</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">NON</button>
+
+                                <form action="/comments/{{this.id_comments}}?_method=DELETE" method="post">
+                                    <button type="submit" class="btn btn-primary">OUI</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>

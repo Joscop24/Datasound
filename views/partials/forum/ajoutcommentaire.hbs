@@ -1,0 +1,26 @@
+{{!--
+Partial : Ajout d'un commentaire
+--}}
+
+<!-- DEBUT ECRIRE COMMENTAIRE -->
+<div class="container mt-4">
+    <div class="col-md-12 row">
+        <div class="col row">
+            <h3 class="text-center">Laissez un commentaire</h3>
+
+            <!-- Input + textarea Nom -->
+            <div class="col-mb-12">
+                {{!-- <form action="/comments" method="post" class="d-flex"> --}}
+                    <form action="/comments" method="post" enctype="multipart/form-data">
+
+                        <textarea class="text-center" rows="3" name="commentary"></textarea>
+                        <input type="file" name="image" />
+            </div>
+            <!-- Button Envoyer -->
+            <div class="col-md-12 text-center mt-2">
+                <button type="submit" class="btn btn-outline-light">Envoyer</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>

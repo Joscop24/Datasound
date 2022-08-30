@@ -1,0 +1,167 @@
+{{!--
+Partials : Forum
+--}}
+
+<!-- COMMENTAIRES -->
+
+<h3 class="text-center mb-4">COMMENTAIRES</h3>
+
+
+<div class="container mh100 resp-forum">
+    <div class="col-12 row border border-white box-shadow">
+        <div class="col-md-2  text-center">
+            <img src="./assets/images/wallpaper-kush.png" alt="" class="img-custom rounded-circle mt-3">
+        </div>
+        <div class="col col-md-10 row">
+            <h2 class="d-flex align-items-center mt-2">Dr Kush </h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Repellat, nulla culpa? Asperiores, praesentium accusamus expedita ipsum quidem laborum.
+                Quasi
+                rem voluptatibus architecto eos corporis voluptas? ipsum dolor sit amet consectetur
+                adipisicing
+                elit. Voluptatem odio ad earum minus molestiae iste similique. Odio perspiciatis eaque
+                exercitationem</p>
+            <div class="col text-end mb-2">
+
+
+
+
+                <!-- Modal Répondre au Message -->
+                <button type="button" class="btn border-white text-white" data-bs-toggle="modal"
+                    data-bs-target="#RepondreModal">
+                    Répondre</button>
+                </button>
+
+                <div class="modal fade" id="RepondreModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog ">
+                        <div class="modal-content bg-dark">
+                            <div class="modal-header">
+                                <h5 class="modal-title " id="exampleModalLabel">Répondre aux
+                                    message de
+                                    ...
+                                </h5>
+                                <button type="button" class="btn-close bg-light" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body ">
+                                <textarea class="form-control bg-dark text-light" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Envoyer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Modal Modifier le Message -->
+                <button type="button" class="btn border-white" data-bs-toggle="modal" data-bs-target="#ChangeModal">
+                    <i class="fa-solid fa-pen text-white"></i></button>
+                </button>
+
+                <div class="modal fade" id="ChangeModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content bg-dark">
+                            <div class="modal-header">
+                                <h5 class="modal-title " id="exampleModalLabel">Modifier le
+                                    message
+                                </h5>
+                                <button type="button" class="btn-close bg-light" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body text-black">
+                                <textarea class="form-control bg-dark text-light" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{!-- Modal Supprimer le Message --}}
+                <button type="button" class="btn border-white" data-bs-toggle="modal" data-bs-target="#DeleteModal"><i
+                        class="fa-solid fa-trash text-white"></i></button>
+                <div class="modal fade" id="DeleteModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content bg-dark">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Suppresion du
+                                    message</h5>
+                                <button type="button" class="btn-close bg-light" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p class="text-center">Voulez vous vraiment supprimer le message
+                                    ??</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">NON</button>
+                                <button type="button" class="btn btn-primary">OUI</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    {{!-- 3eme Message + Reponse du 2eme Message --}}
+    <div class="col-12 row border border-white mt-4 box-shadow">
+
+    <div class="col-md-2  text-center">
+            <img src="./assets/images/prime.jpeg" alt="" class="img-custom rounded-circle mt-3">
+        </div>
+        <div class="col col-md-10 row">
+            <h2 class="d-flex align-items-center mt-2">Prime</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Repellat, nulla culpa? Asperiores, praesentium accusamus expedita ipsum quidem laborum.
+                Quasi
+                rem voluptatibus architecto eos corporis voluptas? ipsum dolor sit amet consectetur
+                adipisicing
+                elit. Voluptatem odio ad earum minus molestiae iste similique. Odio perspiciatis eaque
+                exercitationem</p>
+        </div>
+
+{{!-- Collapse Reponse Commentaire --}}
+  <button class="btn btn-outline-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    Regarder les réponses
+  </button>
+
+<div class="collapse d-flex justify-content-center" id="collapseExample">
+  <div class="col-11 row border border-white m-4 d-flex justify-content-center ">
+            <div class="col-md-2  text-center">
+                <img src="./assets/images/wallpaper-kush.png" alt="" class="img-custom rounded-circle mt-2 ">
+            </div>
+            <div class="col col-md-10 row">
+                <h2 class="d-flex align-items-center mt-2">Dr Kush </h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Repellat, nulla culpa? Asperiores, praesentium accusamus expedita ipsum quidem laborum.
+                    Quasi
+                    rem voluptatibus architecto eos corporis voluptas? ipsum dolor sit amet consectetur
+                    adipisicing
+                    elit. Voluptatem odio ad earum minus molestiae iste similique. Odio perspiciatis eaque
+                    exercitationem</p>
+
+            </div>
+        </div>
+</div>
+{{!-- END COLLAPSE --}}
+
+        
+    </div>
+
+
+
+    {{!-- End Container --}}
+</div>
+
+

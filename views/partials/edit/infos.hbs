@@ -1,0 +1,73 @@
+{{!--
+Partials : Informations du compte
+--}}
+
+
+<div class="container-fluid mt-5 ">
+    <h3 class="text-center"> Informations du Compte :</h3>
+</div>
+
+
+{{#if user}}
+<div class="container d-flex justify-content-evenly resp-edit">
+    <div class="card d-flex justify-content-center mt-4 border border-dark box-shadow ">
+        <div class="card-body bg-dark">
+            <h5 class="card-title fs-2">Votre compte :</h5>
+            {{!-- Surname --}}
+            <div class="">
+                <label for="exampleFormControlInput1" class="form-label text-white fs-4">Surname :
+                    {{user.surname}}</label>
+            </div>
+            {{!-- Name --}}
+            <div>
+                <label for="exampleFormControlInput1" class="form-label text-white fs-4">Name : {{user.name}}</label>
+            </div>
+            {{!-- Username --}}
+            <div class=" mt-4">
+                <label for="exampleFormControlInput1" class="form-label text-white fs-4">Username :
+                    {{user.username}}</label>
+            </div>
+            {{!-- Email --}}
+            <div class=" mt-4">
+                <label for="exampleFormControlInput1" class="form-label text-white fs-4">Email : {{user.email}}</label>
+            </div>
+            {{!-- Creation compte --}}
+            <div class="mt-4">
+                <label for="exampleFormControlInput1" class="form-label text-white fs-4">Date de Création :
+                    {{user.created_at}} </label>
+            </div>
+            <div class="mt-4">
+                <label for="exampleFormControlInput1" class="form-label text-white fs-4">ID :
+                    {{user.id}} </label>
+                {{!-- ID du compte --}}
+
+            </div>
+        </div>
+    </div>
+    {{/if}}
+
+    <div class="card d-flex justify-content-center mt-4 border border-dark box-shadow">
+        <div class="card-body bg-dark ">
+            <h5 class="card-title fs-2">Se Déconnecter du Compte</h5>
+            <p>Vous pouvez vous déconnecter lorsque vous le souhaiter, n'oubliez pas vos identifiants et vos mot de
+                passe</p>
+            {{!-- Boutton de Déconnecter --}}
+            <div class="text-center">
+                <form action="/logout" method="post">
+                    <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Se Déconnecter</button>
+                </form>
+            </div>
+            <hr>
+            <h5 class="card-title fs-2">Se Déconnecter de Spotify</h5>
+            <p>Vous pouvez vous déconnecter lorsque vous le souhaiter, n'oubliez pas votre identifiant et votre mot de
+                passe</p>
+            <div class="text-center">
+
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Se Déconnecter de
+                    Spotify</button>
+            </div>
+        </div>
+
+    </div>
+
+</div>

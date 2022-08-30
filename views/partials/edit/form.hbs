@@ -1,0 +1,106 @@
+{{!--
+Partials : Header
+--}}
+
+{{!-- Partie PP Profil + Username --}}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-3 d-flex justify-content-center">
+            <img src="./assets/images/jazzybazz.jpeg" class="rounded-circle img-header box-shadow">
+        </div>
+        {{#if user}}
+        <div class="col-3 d-flex align-items-center">
+            <h3>{{user.username}} {{user.id}}</h3>
+        </div>
+        {{/if}}
+        <!-- Button trigger modal -->
+        <div class="text-end">
+            <button type="button" class="btn btn-outline-light mt-3 box-shadow" data-bs-toggle="modal"
+                data-bs-target="#exampleModal" style="width: 15rem;">
+                Modifier les Informations
+            </button>
+
+            <!-- Modal Modifier le compte-->
+            <div class="modal fade bg " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content bg-dark">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-light" id="exampleModalLabel">Modification Compte (ID:
+                                {{user.id}})</h5>
+                            <button type="button" class="btn-close bg-light" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+
+                        <form action="/update/{{user.id}}?_method=PUT" method="post">
+                            <div class="modal-body text-black ">
+                                <div class="container mt-2">
+                                    <div class="row justify-content-md-center text-start">
+                                        <div class="col-12">
+
+
+                                            {{!-- Modifier l'image --}}
+                                            <div class="row text-white ">
+                                                <div class="col d-flex align-items-center">
+                                                    <img src="./assets/images/jazzybazz.jpeg"
+                                                        class="rounded-circle img-header">
+
+                                                    <p class="ms-2">Génerer une nouvelle Photo de Profil</p>
+                                                    <button type="button" class="btn btn-light"
+                                                        data-bs-dismiss="modal">New
+                                                        picture</button>
+                                                </div>
+                                            </div>
+                                            {{#if flash3}}
+                                            <h3 style="color:white" class="text-center">{{this.flash3}}</h3>
+                                            {{/if}}
+                                            {{!-- Username --}}
+                                            <div class="col ">
+                                                <label for="exampleFormControlInput1"
+                                                    class="form-label text-white">Username</label>
+                                                <input type="text" class="form-control" id="exampleFormControlInput1"
+                                                    placeholder={{user.username}} name="newusername">
+                                            </div>
+                                            {{!-- Email --}}
+                                            <div class="col">
+                                                <label for="exampleFormControlInput1"
+                                                    class="form-label text-white">Email</label>
+                                                <input type="email" class="form-control" id="exampleFormControlInput1"
+                                                    placeholder={{user.email}} name="email">
+                                            </div>
+                                            {{!-- MDP --}}
+                                            <div class="col">
+                                                <label for="exampleFormControlInput1" class="form-label text-white">Mot
+                                                    de
+                                                    Passe</label>
+                                                <input type="password" class="form-control"
+                                                    id="exampleFormControlInput1" placeholder="" name="newpassword">
+                                            </div>
+                                            {{!-- Confirmation MDP --}}
+                                            <div class="col">
+                                                <label for="exampleFormControlInput1" class="form-label text-white">
+                                                    Confirmer Mot de Passe</label>
+                                                <input type="password" class="form-control mb-3"
+                                                    id="exampleFormControlInput1" placeholder="" name="confirmpassword">
+                                            </div>
+
+                                            <div class="col">
+                                                <label for="exampleFormControlInput1" class="form-label text-white">
+                                                    id : {{user.id}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-success">Save changes</button>
+                                </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

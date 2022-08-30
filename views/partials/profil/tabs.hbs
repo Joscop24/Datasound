@@ -1,0 +1,336 @@
+{{!--
+Partial : Stats Top Artists / Songs
+--}}
+
+
+{{!-- --------------------Gestion des Tabs Ton Artists && Top Songs-------------------- --}}
+{{!-- -------------------- Top Artists && Songs ----------------------------- --}}
+
+<ul class="nav nav-pills mt-5 me-5 d-flex justify-content-end" id="pills-tab" role="tablist">
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active " id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home"
+            type="button" role="tab" aria-controls="pills-home" aria-selected="true">4 Weeks</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
+            type="button" role="tab" aria-controls="pills-profile" aria-selected="false">6 Months</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact"
+            type="button" role="tab" aria-controls="pills-contact" aria-selected="false">All Time</button>
+    </li>
+</ul>
+
+
+{{!-- Tabs Content --}}
+<div class="tab-content" id="pills-tabContent">
+    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+        {{!-- -------------- 4 Weeks -------------- --}}
+        {{!-- -------------- Classement -------------- --}}
+        <div class="container mt-5 ">
+            <div class="row ">
+                <div class="col">
+                    <h5 class="fs-2 ">Top Artists</h5>
+                    <button class="btn btn-outline-light rounded-4 mt-3 fs-5 "><i class="fa-solid fa-share-nodes "></i>
+                        Share</button>
+                    <div class="mt-300">
+                        <ul class="mt-3 fs-4 " style="list-style-type: decimal">
+                            <li>Damso</li>
+                            <li>Josman</li>
+                            <li>Kekra</li>
+                            <li>Prime</li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </div>
+                    <h5 class="text-custom mb-5">See More</h5>
+                </div>
+
+                {{!-- -------------- Avatar -------------- --}}
+                <div class="avatar-group rel col d-flex align-items-center ">
+                    {{!-- 3eme Place --}}
+                    <div class="avatar">
+                        <img src="./assets/images/kekra.jpeg" alt="Avatar" class="rounded-circle img-top-artists abs-4">
+                    </div>
+                    {{!-- 2eme Place --}}
+                    <div class="avatar">
+                        <img src="./assets/images/jos.jpg" alt="Avatar" class="rounded-circle img-top-artists abs-5">
+                    </div>
+                    {{!-- 1ere Place --}}
+                    <div class="avatar">
+                        <img src="./assets/images/damso.jpg" alt="Avatar" class="rounded-circle img-top-artists abs-6">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{!-- -------------------- Top Songs ----------------------------- --}}
+        <div class="container mt-5 ">
+            <div class="row">
+                <div class="col">
+                    <h5 class="fs-2">Top Songs</h5>
+                    <div class="d-flex">
+                        <button class="btn btn-outline-light rounded-4 mt-3 fs-5 "><i
+                                class="fa-solid fa-share-nodes "></i>
+                            Share</button>
+
+                        <button class="btn btn-outline-light rounded-4 mt-3 fs-5 "><i
+                                class="fa-solid fa-floppy-disk"></i>
+                            Create Playlist</button>
+                    </div>
+                    <div class="mt-300">
+                        <ul class="mt-3 fs-4" style="list-style-type: decimal">
+                            <li>Fais moi un vie</li>
+                            <li>Iverson</li>
+                            <li>Dubai</li>
+                            <li>Stuntmen</li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </div>
+                    <h5 class="text-custom">See More</h5>
+                </div>
+
+                {{!-- -------------- Avatar -------------- --}}
+                <div class="col mt-5 text-center">
+                    <div class="container ">
+                        <div class="row mt-resp-20">
+
+                            {{!-- 3eme Place --}}
+                            <div class="avatar-group rel col d-flex align-items-center ">
+                                <div class="avatar">
+                                    <img src="./assets/images/dubai.jpg" alt="Avatar"
+                                        class="rounded-circle img-top-artists abs-7">
+                                </div>
+                                {{!-- 2eme Place --}}
+                                <div class="avatar">
+                                    <img src="./assets/images/ehdmra.jpg" alt="Avatar"
+                                        class="rounded-circle img-top-artists abs-8">
+                                </div>
+                                {{!-- 1ere Place --}}
+                                <div class="avatar">
+                                    <img src="./assets/images/fais-moi-un-vie-damso.jpg" alt="Avatar"
+                                        class="rounded-circle img-top-artists abs-9">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+        {{!-- -------------- 6 Months -------------- --}}
+        {{!-- -------------- Classement -------------- --}}
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col">
+                    <h5 class="fs-2">Top Artists</h5>
+                    <button class="btn btn-outline-light rounded-4 mt-3 fs-5 "><i class="fa-solid fa-share-nodes "></i>
+                        Share</button>
+                    <div class="mt-300">
+                        <ul class="mt-3 fs-4" style="list-style-type: decimal">
+                            <li>Josman</li>
+                            <li>Kekra</li>
+                            <li>Damso</li>
+                            <li>Prime</li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </div>
+                    <h5 class="text-custom mb-5">See More</h5>
+                </div>
+
+                {{!-- -------------- Avatar -------------- --}}
+                <div class="avatar-group rel col d-flex align-items-center ">
+                    {{!-- 3eme Place --}}
+                    <div class="avatar">
+                        <img src="./assets/images/damso.jpg" alt="Avatar" class="rounded-circle img-top-artists abs-4">
+                    </div>
+                    {{!-- 2eme Place --}}
+                    <div class="avatar">
+                        <img src="./assets/images/kekra.jpeg" alt="Avatar" class="rounded-circle img-top-artists abs-5">
+                    </div>
+                    {{!-- 1ere Place --}}
+                    <div class="avatar">
+                        <img src="./assets/images/jos.jpg" alt="Avatar" class="rounded-circle img-top-artists abs-6">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{!-- -------------------- Top Songs ----------------------------- --}}
+        <div class="container mt-5 ">
+            <div class="row">
+                <div class="col">
+                    <h5 class="fs-2">Top Songs</h5>
+                    <div class="d-flex">
+                        <button class="btn btn-outline-light rounded-4 mt-3 fs-5 "><i
+                                class="fa-solid fa-share-nodes "></i>
+                            Share</button>
+                        <button class="btn btn-outline-light rounded-4 mt-3 fs-5 "><i
+                                class="fa-solid fa-floppy-disk"></i>
+                            Create Playlist</button>
+                    </div>
+                    <div class="mt-300">
+                        <ul class="mt-3 fs-4" style="list-style-type: decimal">
+                            <li>Iverson</li>
+                            <li>Dubai</li>
+                            <li>Fais moi un vie</li>
+                            <li>Stuntmen</li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </div>
+                    <h5 class="text-custom">See More</h5>
+                </div>
+
+                {{!-- -------------- Avatar -------------- --}}
+                <div class="col mt-5 text-center">
+                    <div class="container ">
+                        <div class="row mt-resp-20">
+
+                            {{!-- 3eme Place --}}
+                            <div class="avatar-group rel col d-flex align-items-center ">
+                                <div class="avatar">
+                                    <img src="./assets/images/fais-moi-un-vie-damso.jpg" alt="Avatar"
+                                        class="rounded-circle img-top-artists abs-7">
+                                </div>
+                                {{!-- 2eme Place --}}
+                                <div class="avatar">
+                                    <img src="./assets/images/dubai.jpg" alt="Avatar"
+                                        class="rounded-circle img-top-artists abs-8">
+                                </div>
+                                {{!-- 1ere Place --}}
+                                <div class="avatar">
+                                    <img src="./assets/images/ehdmra.jpg" alt="Avatar"
+                                        class="rounded-circle img-top-artists abs-9">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+        {{!-- -------------- All Time -------------- --}}
+        {{!-- -------------- Classement -------------- --}}
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col">
+                    <h5 class="fs-2">Top Artists</h5>
+                    <button class="btn btn-outline-light rounded-4 mt-3 fs-5 "><i class="fa-solid fa-share-nodes "></i>
+                        Share</button>
+                    <div class="mt-300">
+                        <ul class="mt-3 fs-4" style="list-style-type: decimal">
+                            <li>Kekra</li>
+                            <li>Damso</li>
+                            <li>Josman</li>
+                            <li>Prime</li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </div>
+                    <h5 class="text-custom mb-5">See More</h5>
+                </div>
+
+                {{!-- -------------- Avatar -------------- --}}
+                <div class="avatar-group rel col d-flex align-items-center ">
+                    {{!-- 3eme Place --}}
+                    <div class="avatar">
+                        <img src="./assets/images/jos.jpg" alt="Avatar" class="rounded-circle img-top-artists abs-4">
+                    </div>
+                    {{!-- 2eme Place --}}
+                    <div class="avatar">
+                        <img src="./assets/images/damso.jpg" alt="Avatar" class="rounded-circle img-top-artists abs-5">
+                    </div>
+                    {{!-- 1ere Place --}}
+                    <div class="avatar">
+                        <img src="./assets/images/kekra.jpeg" alt="Avatar" class="rounded-circle img-top-artists abs-6">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{!-- -------------------- Top Songs ----------------------------- --}}
+        <div class="container mt-5 ">
+            <div class="row">
+                <div class="col">
+                    <h5 class="fs-2">Top Songs</h5>
+                    <div class="d-flex">
+                        <button class="btn btn-outline-light rounded-4 mt-3 fs-5 "><i
+                                class="fa-solid fa-share-nodes "></i>
+                            Share</button>
+                        <button class="btn btn-outline-light rounded-4 mt-3 fs-5 "><i
+                                class="fa-solid fa-floppy-disk"></i>
+                            Create Playlist</button>
+                    </div>
+                    <div class="mt-300">
+                        <ul class="mt-3 fs-4" style="list-style-type: decimal">
+                            <li>Dubai</li>
+                            <li>Fais moi un vie</li>
+                            <li>Iverson</li>
+                            <li>Stuntmen</li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </div>
+                    <h5 class="text-custom">See More</h5>
+                </div>
+
+                {{!-- -------------- Avatar -------------- --}}
+                <div class="col mt-5 text-center">
+                    <div class="container">
+                        <div class="row mt-resp-20">
+
+                            {{!-- 3eme Place --}}
+                            <div class="avatar-group rel col d-flex align-items-center ">
+                                <div class="avatar">
+                                    <img src="./assets/images/ehdmra.jpg" alt="Avatar"
+                                        class="rounded-circle img-top-artists abs-7">
+                                </div>
+                                {{!-- 2eme Place --}}
+                                <div class="avatar">
+                                    <img src="./assets/images/fais-moi-un-vie-damso.jpg" alt="Avatar"
+                                        class="rounded-circle img-top-artists abs-8">
+                                </div>
+                                {{!-- 1ere Place --}}
+                                <div class="avatar">
+                                    <img src="./assets/images/dubai.jpg" alt="Avatar"
+                                        class="rounded-circle img-top-artists abs-9">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,114 @@
+{{!--
+Partial : Formulaire de Connexion / D'inscription
+--}}
+
+<div class="mh63">
+    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home"
+                type="button" role="tab" aria-controls="pills-home" aria-selected="true">Se Connecter</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
+                type="button" role="tab" aria-controls="pills-profile" aria-selected="false">S'enregister</button>
+        </li>
+    </ul>
+    <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+
+            {{!-- Connectez vous --}}
+            <div class="container-fluid mt-5 ">
+                {{#if flash}}
+                <h3 style="color:white" class="text-center">{{this.flash}}</h3>
+                {{/if}}
+                <h3 class="text-center"> Connectez vous :</h3>
+                <form action="/login" method="post">
+                    <div class="row">
+                        <div class="col">
+                            <div class="d-flex align-items-center column">
+                                <div class="mb-2 col-4 resp-connexion">
+                                    <label for="exampleFormControlInput1" class="form-label text-white">Email</label>
+                                    <input type="text" class="form-control" id="exampleFormControlInput1" name="email$">
+                                </div>
+                                <div class="mb-2 col-4 ">
+                                    <label for="exampleFormControlInput1" class="form-label text-white">Mot de
+                                        Passe</label>
+                                    <input type="password" class="form-control" id="exampleFormControlInput1"
+                                        placeholder="" name="password$">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 text-center mt-2">
+                        <button type="submit" class="btn btn-outline-light">Se connecter</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+
+
+            <!-- Création d'un compte -->
+            <div class="container-fluid mt-5 ">
+                <h3 class="text-center"> Vous n'avez pas de compte, creer le des maintenant</h3>
+                {{#if flash2}}
+                <h3 style="color:white" class="text-center">{{this.flash2}}</h3>
+                {{/if}}
+                <div class="row d-flex justify-content-center">
+                    <form action="/register" method="post">
+                        <!-- 1ere case -->
+                        <div class="col-8 ">
+                            <div class="row d-flex justify-content-center">
+                                <div class="col-4">
+                                    <!-- Input + textarea Nom -->
+                                    <div class="">
+                                        <label for="exampleFormControlInput1" class="form-label text-white">Nom</label>
+                                        <input type="text" class="form-control" id="name" name="name">
+                                    </div>
+                                </div>
+                                <!-- Input + textarea Prenom -->
+                                <div class="col-4">
+                                    <div class="">
+                                        <label for="exampleFormControlInput1"
+                                            class="form-label text-white">Prenom</label>
+                                        <input type="text" class="form-control" id="surname" name="surname">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-wrap justify-content-center">
+                                <!-- Input + textarea Email -->
+                                <div class="col-7 mt-3">
+                                    <label for="exampleFormControlInput1" class="form-label text-white">
+                                        Pseudo</label>
+                                    <input type="text" class="form-control" id="username" name="username">
+                                </div>
+                                <!-- Input + textarea MDP -->
+                                <div class="col-7 mt-3">
+                                    <label for="exampleFormControlInput1" class="form-label text-white">Email
+                                        adress</label>
+                                    <input type="email" class="form-control" id="email"
+                                        placeholder="brunosolo@example.com" name="email">
+                                </div>
+                                <div class="col-7 mt-3">
+                                    <label for="exampleFormControlInput1" class="form-label text-white">Mot de
+                                        passe</label>
+                                    <input type="password" class="form-control" id="password1" name="password">
+                                </div>
+                                <!-- Input + textarea Confirmation MDP -->
+                                <div class="col-7 mt-3">
+                                    <label for="exampleFormControlInput1" class="form-label text-white">Confirmer Mot de
+                                        passe</label>
+                                    <input type="password" class="form-control" id="password2" name="confirmpassword">
+                                </div>
+                            </div>
+                            <!-- Button white envoyer -->
+                            <div class="col-md-12 text-center mt-3">
+                                <button type="submit" class="btn btn-outline-light">Créer le compte</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

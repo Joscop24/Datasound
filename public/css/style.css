@@ -1,0 +1,316 @@
+/* Background Body */
+body {
+    background: linear-gradient(to right bottom, #000000, #0c0306, #14060d, #190a14, #1d0d1a, #2c132a, #3a183d, #481e52, #692679, #8b2ea3, #ae35cf, #d33bfd);
+    ;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}
+
+/*  /home Dimensions Images de départ */
+.img-header {
+    width: 150px;
+    height: 150px;
+}
+
+/* /home Dimensions Avatar */
+.img-avatar {
+    width: 250px;
+    height: 250px;
+}
+
+
+/* /home Position Relative & Absolute */
+.rel {
+    position: relative;
+    height: 30vh;
+}
+
+
+.abs-1 {
+    position: absolute;
+    right: 235px;
+}
+
+.abs-2 {
+    position: absolute;
+    right: 350px;
+}
+
+.abs-3 {
+    position: absolute;
+    right: 465px;
+}
+
+
+/* Connexion */
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Link */
+.img-header-link {
+    width: 150px;
+    height: 150px;
+}
+
+
+/* PARTIE PROFIL */
+/* IMAGES ABSOLU POUR TOP ARTISTS */
+.abs-4 {
+    position: absolute;
+    right: 300px;
+}
+
+.abs-5 {
+    position: absolute;
+    right: 0px;
+}
+
+.abs-6 {
+    position: absolute;
+    right: 150px;
+}
+
+.abs-7 {
+    position: absolute;
+    right: 300px;
+}
+
+.abs-8 {
+    position: absolute;
+    right: 0px;
+}
+
+.abs-9 {
+    position: absolute;
+    right: 150px;
+}
+
+/* SIZE IMAGES*/
+.img-top-artists {
+    width: 250px;
+    height: 250px;
+}
+
+/* Margin & Padding */
+.me-325 {
+    margin-right: 325px;
+}
+
+.mt-200 {
+    margin-top: 200px;
+}
+
+.mt-210 {
+    margin-top: 210px;
+}
+
+
+/* Color Custom + Color Spotify */
+.text-custom {
+    color: #D488E9;
+}
+
+.btn-custom {
+    background-color: #D488E9;
+}
+
+
+/* Color for Spotify */
+.color-spotify {
+    color: #1fdf64;
+}
+
+.btn-spotify {
+    color: #ffffff;
+    background-color: #1fdf64 !important;
+}
+
+/* Enlever les items sur la liste */
+.none-list {
+    list-style: none;
+}
+
+.box-shadow {
+    box-shadow: 5px 5px 15px 1px #D488E9;
+}
+
+.img-custom {
+    width: 125px;
+    height: 125px;
+}
+
+.img-card-admin {
+    width: 75px;
+    height: 75px;
+}
+
+
+.bg-custom {
+    background: linear-gradient(to right bottom, #000000, #0c0306, #14060d, #190a14, #1d0d1a, #2c132a, #3a183d, #481e52, #692679, #8b2ea3, #ae35cf, #d33bfd);
+}
+
+/* Taille pour le Footer */
+.mh100 {
+    min-height: 100vh;
+}
+
+.mh63 {
+    min-height: 63vh;
+}
+
+
+/*------------------------------------------------*/
+/*------------------------------------------------*/
+/* RESPONSIVE */
+/*------------------------------------------------*/
+/*------------------------------------------------*/
+
+@media screen and (max-width: 1100px) {
+
+
+    /* Page Home */
+    .img-header {
+        width: 50px;
+        height: 50px;
+    }
+
+    /* /home Dimensions Avatar */
+    .img-avatar {
+        width: 130px;
+        height: 130px;
+        top: 875px;
+    }
+
+
+    /* /home Position Relative & Absolute */
+    .rel {
+        position: relative;
+        height: 30vh;
+    }
+
+    .abs-1 {
+        position: absolute;
+        right: 40px;
+    }
+
+    .abs-2 {
+        position: absolute;
+        right: 120px;
+    }
+
+    .abs-3 {
+        position: absolute;
+        right: 200px;
+    }
+
+    .resp-home {
+        display: flex;
+        /* flex-direction: column; */
+        justify-content: center;
+        align-items: center;
+    }
+
+    .mt-200 {
+        margin-top: 25px;
+    }
+
+    .mt-210 {
+        margin-top: 170px;
+    }
+
+    .font-12 {
+        size: 12px;
+    }
+
+    .mt-resp-50 {
+        margin-top: 50px;
+    }
+
+    .mt-resp-20 {
+        margin-top: 20px;
+    }
+
+    .resp-home2 {
+        display: flex;
+        flex-direction: column-reverse;
+        align-content: center;
+
+    }
+
+    .resp-connexion {
+        display: grid;
+        grid-template-columns: auto;
+    }
+
+    /* Link Responsive */
+    .img-header-link {
+        height: 100px;
+        width: 100px;
+        display: flex;
+        margin-right: 45px;
+    }
+
+    .resp-link {
+        display: flex;
+        justify-content: center;
+    }
+
+    /* PARTIE PROFIL RESPONSIVE */
+    /* IMAGES ABSOLU POUR TOP ARTISTS */
+    .abs-4 {
+        position: absolute;
+        right: 190px;
+    }
+
+    .abs-5 {
+        position: absolute;
+        right: 30px;
+    }
+
+    .abs-6 {
+        position: absolute;
+        right: 110px;
+    }
+
+    .abs-7 {
+        position: absolute;
+        right: 170px;
+    }
+
+    .abs-8 {
+        position: absolute;
+        right: 10px;
+    }
+
+    .abs-9 {
+        position: absolute;
+        right: 90px;
+    }
+
+    /* SIZE IMAGES*/
+    .img-top-artists {
+        width: 150px;
+        height: 150px;
+    }
+
+    .mt-300 {
+        margin-top: 200px;
+    }
+
+    /* Edit Profil Responsive */
+    .resp-edit {
+        display: flex;
+        flex-direction: column;
+    }
+
+
+    /* Forum */
+    .resp-forum{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
