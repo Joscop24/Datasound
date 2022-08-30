@@ -272,30 +272,35 @@ app
 /* --------------------
        /Forum
 --------------------*/
-//add comment // ajouter un commentaire
 app
   .get("/forum", (req, res) => {
-    db.query(`SELECT * FROM user INNER JOIN comments ON user.id = comments.id_user`, (err, data) => {
-      if (err) console.log(err)
-      // console.log('page forum', data)
-      res.render("forum", {
-        db: data
-      });
-    })
+    // db.query(`SELECT * FROM user INNER JOIN comments ON user.id = comments.id_user`
+    db.query(`SELECT * FROM user INNER JOIN comments ON user.id = comments.id_user`,
+      (err, data) => {
+        // ligne de ludo => SELECT * FROM comments INNER JOIN user ON comments.id_comments = user.username
+        // db.query(` SELECT * FROM comments INNER JOIN user ON comments.id_comments = username.id`
+        if (err) return console.log(err)
+        console.log('data', data)
+        res.render("forum", {
+          dbil: data
+        });
+      })
 
   })
 
+
+
+  //add comment // ajouter un commentaire
   .post("/comments", upload.single('image'), async (req, res) => {
-    console.log('Create comment (IMG)', req.file)
     const { commentary, id_user } = req.body;
     const { id_comments } = req.params;
     const image = req.file ? req.file.filename : false;
 
     if (image) await db.query(`INSERT INTO comments SET commentary="${commentary}", id_user="${req.session.user.id}" , image="${image}"`),
-    console.log("image OK");
-  else await db.query(`INSERT INTO comments SET commentary="${commentary}", id_user="${req.session.user.id}" , image=''`), console.log("image NOK");
-        
-        res.redirect("back");
+      console.log("image OK");
+    else await db.query(`INSERT INTO comments SET commentary="${commentary}", id_user="${req.session.user.id}" , image=''`), console.log("image NOK");
+
+    res.redirect("back");
   })
 
 
