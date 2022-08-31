@@ -8,22 +8,17 @@ Partials : Forum
 
 
 <div class="container mh100 resp-forum">
-    {{#each dbil}}
+    {{#each db}}
     <div class="col-12 row border border-white box-shadow mt-4">
         <div class="col-md-2  text-center">
             <img src="./assets/images/default.png" alt="" class="img-custom rounded-circle mt-3">
         </div>
 
         <div class="col col-md-10 row">
-            {{#if this.user}}
-            <h2 class="d-flex align-items-center mt-2">{{user.username}}</h2>
-            <h2>COUCOU</h2>
-            {{else}}
-            <h2 class="d-flex align-items-center mt-2">N°{{this.id_comments}} + {{this.username}} </h2>
-            {{/if}}
+            <h2 class="d-flex align-items-center mt-2">{{this.username}} + {{this.id_comments}}</h2>
             <p>{{this.commentary}}</p>
-            {{!-- <img src="/assets/images/{{this.image}}" class="w-75 rounded-5" /> --}}
 
+            {{!-- Condition pour l'affichage de l'image dans le commentaire --}}
             {{#ifImgExist this.image}}
             <img src="/assets/images/{{../this.image}}" class="w-75 rounded-5" />
             {{else }}
@@ -65,7 +60,7 @@ Partials : Forum
 
                 <!-- Modal Modifier le Message -->
                 <button type="button" class="btn border-white" data-bs-toggle="modal"
-                    data-bs-target="#ChangeModal-{{this.id_comments}}">
+                    data-bs-target="#Patrick-{{this.id_comments}}">
                     <i class="fa-solid fa-pen text-white"></i></button>
                 </button>
 

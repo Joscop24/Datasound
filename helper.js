@@ -4,7 +4,7 @@ module.exports = {
         return db;
     },
     ifImgExist: (data, options) => {
-        console.log('ifImgExist', data)
+        // console.log('ifImgExist', data)
         if (data) return options.fn(this)
         else return options.inverse(this);
     }
