@@ -32,7 +32,7 @@ Partials : Forum
                     data-bs-target="#RepondreModal">
                     Répondre</button>
                 </button>
-
+                
                 <div class="modal fade" id="RepondreModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog ">
@@ -59,11 +59,12 @@ Partials : Forum
 
 
                 <!-- Modal Modifier le Message -->
+                {{#if id_user}}
                 <button type="button" class="btn border-white" data-bs-toggle="modal"
-                    data-bs-target="#Patrick-{{this.id_comments}}">
+                    data-bs-target="#ChangeModal-{{this.id_comments}}">
                     <i class="fa-solid fa-pen text-white"></i></button>
                 </button>
-
+                {{/if}}
                 <div class="modal fade" id="ChangeModal-{{this.id_comments}}" tabindex="-1"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -99,11 +100,11 @@ Partials : Forum
 
 
                 {{!-- Modal Supprimer le Message --}}
-
+{{#if id_user}}
                 <button type="button" class="btn border-white" data-bs-toggle="modal"
                     data-bs-target="#DeleteModal-{{this.id_comments}}"><i
                         class="fa-solid fa-trash text-white"></i></button>
-
+{{/if}}
                 <div class="modal fade" id="DeleteModal-{{this.id_comments}}" tabindex="-1"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">

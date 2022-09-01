@@ -11,13 +11,14 @@ const MySQLStore = require("express-mysql-session")(expressSession);
 
 const upload = require('./utils/multer')
 
+
 const port = 3000;
 
 // Déstructuration de process.env
 const { DB_DATABASE, DB_HOST, DB_PASSWORD, DB_USER, PORT_NODE } = process.env;
 
 // Import des middlewares*
-const { isAdmin } = require("./middleware");
+const { isAdmin } = require("./middlewares/middleware");
 const app = express();
 
 /*
@@ -62,6 +63,7 @@ db.connect((err) => {
  * Config method override
  *************************/
 app.use(methodOverride("_method"));
+
 /*
  * Config Body-parser
  *********************/
@@ -114,10 +116,10 @@ app.post('/logout', (req, res) => {
        /Forum
 --------------------*/
 //add comment // ajouter un commentaire
+/*
 app
   .post("/comments", upload.single('image'), async (req, res) => {
-    const { commentary, id_user } = req.body;
-    const { id_comments } = req.params;
+    const { commentary } = req.body;
     const image = req.file ? req.file.filename : false;
 
     if (image) await db.query(`INSERT INTO comments SET commentary="${commentary}", id_user="${req.session.user.id}" , image="${image}"`),
@@ -126,7 +128,7 @@ app
 
     res.redirect("back");
   })
-
+*/
 
 // /Forum
 // reply to comment // Répondre au commentaire

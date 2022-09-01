@@ -32,8 +32,19 @@ Partials : ListCards
                             <li> {{this.surname}}</li>
                             <li>{{this.email}}</li>
                         </ul>
-                        {{!-- <form action=""
-                        <button href="/user/:id"></button>     --}}
+
+                        <div class="form-check form-switch">
+                            <input class="form-check-input bg-danger" type="checkbox" role="switch" id="flexSwitchCheckChecked"
+                                checked>
+                            <label class="form-check-label" for="flexSwitchCheckChecked">is Admin</label>
+                        </div>
+
+                        <div class="form-check form-switch">
+
+                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked2"checked2>
+                            <label class="form-check-label" for="flexSwitchCheckChecked2">is Ban</label>
+                        </div>
+                        {{!-- <form action="" <button href="/user/:id"></button> --}}
                     </div>
 
 
@@ -45,12 +56,13 @@ Partials : ListCards
                     </button>
 
                     <!-- Modal -->
-                    <div class="modal fade" id="staticBackdrop-{{this.username}}" data-bs-backdrop="static" data-bs-keyboard="false"
-                        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal fade" id="staticBackdrop-{{this.username}}" data-bs-backdrop="static"
+                        data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content bg-dark">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="staticBackdropLabel">Voulez vous Bannir {{this.username}}</h5>
+                                    <h5 class="modal-title" id="staticBackdropLabel">Voulez vous Bannir
+                                        {{this.username}}</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
@@ -58,12 +70,12 @@ Partials : ListCards
                                     Voulez vous vraiment Bannir ce compte ???
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Bien sur que non</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bien sur que
+                                        non</button>
 
-                                <form action="/user/{{this.id}}?_method=DELETE" method="post">
-                                    <button type="submit" class="btn btn-primary">OUI, je le veux</button>
-                                </form>
+                                    <form action="/user/{{this.id}}?_method=DELETE" method="post">
+                                        <button type="submit" class="btn btn-primary">OUI, je le veux</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>

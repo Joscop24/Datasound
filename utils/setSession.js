@@ -9,7 +9,7 @@ exports.setSession = async (req, res, email) => {
             res.end()
         }
         else {
-             console.log('setSession2', data[0])
+            //  console.log('setSession2', data[0])
             req.session.user = {
                 ...data[0]
                 // name: data[0].name,

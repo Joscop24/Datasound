@@ -2,19 +2,25 @@
 
 // Page Home
 exports.test_md = (req, res, next) => {
+    // if (!req.session.user) return res.redirect('/');
     console.log('Je suis le middleware de la page home')
     next()
 }
 // Page Connexion
 exports.connexion = (req, res, next) => {
-    console.log('je suis sur la page connexion')
+        console.log('je suis sur la page connexion')
     next()
 }
 
 // Connexion
-exports.login = (req, res, next) => {
-    console.log('test connexion')
-    next()
+exports.login = async (req, res, next) => {
+    /*
+    if (!req.session.user) return res.redirect('/')
+    const user = await db.query(`SELECT isBan FROM user WHERE email="${req.session.user.email}"`);
+    console.log('isadmin',  user);
+    (req.session.user.isBan === 1) ? res.redirect('/') : next();
+    */
+   next()
 }
 
 // Inscription
@@ -48,9 +54,13 @@ exports.link = (req, res, next) => {
 }
 
 // Page Admin
-exports.admin = (req, res, next) => {
-    console.log('Page Admin')
-    next()
+exports.imAdmin = async (req, res, next) => {
+    if (!req.session.user) return res.redirect('/')
+    // console.log("session user", req.session.user);
+    const user = await db.query(`SELECT isAdmin FROM user WHERE email="${req.session.user.email}"`);
+    // console.log("Etat de isAdmin" ,req.session.user.isAdmin);
+    console.log('isadmin',  user);
+    (req.session.user.isAdmin === 0) ? res.redirect('/profil') : next();
 }
 
 /*
@@ -72,11 +82,22 @@ exports.forum = (req, res, next) => {
     next()
 }
 
+
+
+// Envoi Commentaire
+exports.envoiComment = (req, res, next) => {
+    console.log('Commentaire bien envoye ');
+    next()
+}
+
+
 // Modification Commentaire
 exports.modifComment = (req, res, next) => {
     console.log('Commentaire Modifie');
     next()
 }
+
+
 
 // Suppression Commentaire
 exports.suppComment = (req, res, next) => {

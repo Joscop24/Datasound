@@ -1,5 +1,9 @@
 const express = require('express')
 const router = express.Router()
+const upload = require('./utils/multer')
+
+const { isAdmin } = require("./middlewares/middleware");
+
 
 
 // Import controllers
@@ -7,12 +11,13 @@ const { getPageHome } = require('./controllers/home.controllers')
 const { getPageAuth, getPageLink, getConnexionUser, getInscriptionUser } = require('./controllers/auth.controller')
 const { getPageProfil, getEditProfil, putUpdateProfil } = require('./controllers/user.controlllers')
 const { getPageAdmin, banUser } = require ('./controllers/admin.controller')
-const { getPageForum, editComment, deleteComment } = require('./controllers/forum.controller')
+const { getPageForum, editComment, deleteComment, sendComment } = require('./controllers/forum.controller')
 const { envoiMail } = require('./controllers/nodemailer.controller')
+// const { commentary } = require ('./utils/multer')
 
 
 // Import middlewares
-const { test_md, connexion, link, login, inscription, profil, editprofil, updateProfil, admin, ban, forum, modifComment, suppComment, nodemailer } = require('./middlewares')
+const { test_md, connexion, link, login, inscription, profil, editprofil, updateProfil, imAdmin, ban, forum, modifComment, suppComment, nodemailer, envoiComment } = require('./middlewares')
 
 
 /*
@@ -35,6 +40,8 @@ router.route('/login')
 router.route('/register')
     .post(inscription, getInscriptionUser)
 
+
+
 /*
 // User Controlleur
 */
@@ -55,22 +62,33 @@ router.route('/update/:id')
 // Admin Controlleur
 */
 router.route('/admin')
-    .get(admin, getPageAdmin)
+    .get(imAdmin, getPageAdmin)
 // Supprimer les utilisateurs => à modifier pour leur empecher de se connecter
 router.route('/user/:id')
     .delete(ban, banUser)
+
+
 
 /*    
 // Forum Controlleur
 */
 router.route('/forum')
     .get(forum, getPageForum)
-// Modification du commentaire
+
+// Envoi Comment    
+router.route("/comments")
+    .post(upload.single('image'), envoiComment, sendComment)
+
+
+
+    // Modification du commentaire
 router.route('/comments/:id_comments')
     .put(modifComment, editComment )
 // Suppression du commentaire
 router.route('/comments/:id_comments')
     .delete(suppComment, deleteComment)
+
+
 
 /*
 // Nodemailer Controlleur
