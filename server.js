@@ -12,13 +12,15 @@ const MySQLStore = require("express-mysql-session")(expressSession);
 const upload = require('./utils/multer')
 
 
+
+
 const port = 3000;
 
 // Déstructuration de process.env
 const { DB_DATABASE, DB_HOST, DB_PASSWORD, DB_USER, PORT_NODE } = process.env;
 
 // Import des middlewares*
-const { isAdmin } = require("./middlewares/middleware");
+const { isAdmin } = require("./middlewares/index");
 const app = express();
 
 /*

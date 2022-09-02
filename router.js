@@ -2,13 +2,13 @@ const express = require('express')
 const router = express.Router()
 const upload = require('./utils/multer')
 
-const { isAdmin } = require("./middlewares/middleware");
+// const { isAdmin } = require("./middlewares/middleware");
 
 
 
 // Import controllers
 const { getPageHome } = require('./controllers/home.controllers')
-const { getPageAuth, getPageLink, getConnexionUser, getInscriptionUser } = require('./controllers/auth.controller')
+const { getPageAuth, getPageLink, getConnexionUser, getInscriptionUser, lostPassword } = require('./controllers/auth.controller')
 const { getPageProfil, getEditProfil, putUpdateProfil } = require('./controllers/user.controlllers')
 const { getPageAdmin, banUser } = require ('./controllers/admin.controller')
 const { getPageForum, editComment, deleteComment, sendComment } = require('./controllers/forum.controller')
@@ -17,7 +17,11 @@ const { envoiMail } = require('./controllers/nodemailer.controller')
 
 
 // Import middlewares
-const { test_md, connexion, link, login, inscription, profil, editprofil, updateProfil, imAdmin, ban, forum, modifComment, suppComment, nodemailer, envoiComment } = require('./middlewares')
+const { test_md, connexion, link,
+        login, inscription,profil,
+        editprofil, updateProfil, imAdmin,
+        ban, forum, modifComment,
+        suppComment, nodemailer, envoiComment } = require('./middlewares/index')
 
 
 /*
@@ -33,6 +37,12 @@ router.route('/')
 // Connexion
 router.route('/connexion')
     .get(connexion, getPageAuth)
+
+// lostPassword
+/*
+router.route('/lostpassword')
+    .post(mdpForgot, lostPassword)
+    */
 // Login
 router.route('/login')
     .post(login, getConnexionUser)
@@ -77,7 +87,7 @@ router.route('/forum')
 
 // Envoi Comment    
 router.route("/comments")
-    .post(upload.single('image'), envoiComment, sendComment)
+    .post(upload.single('image'),sendComment, envoiComment )
 
 
 

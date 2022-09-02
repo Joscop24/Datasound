@@ -9,6 +9,8 @@ const expressSession = require("express-session");
 const MySQLStore = require("express-mysql-session")(expressSession);
 const { setSession } = require("../utils/setSession");
 
+const transporter = require("../config/nodemailer");
+
 
 exports.getPageAuth = (req, res) => {
     res.render("connexion");
@@ -32,6 +34,18 @@ exports.getConnexionUser = (req, res) => {
     }
   );
 }
+
+/*
+exports.lostPassword = async (req, res) => {
+  const { resetmail } = req.body
+  const user = await db.query(`SELECT id, email from user WHERE email="${resetmail}"`)
+
+  var host = req.get('host')
+  console.log('host', host)
+
+  var linkmail = ""
+}
+*/
 
 
 // Inscription du User

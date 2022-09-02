@@ -12,12 +12,6 @@ exports.setSession = async (req, res, email) => {
             //  console.log('setSession2', data[0])
             req.session.user = {
                 ...data[0]
-                // name: data[0].name,
-                // surname: user.surname,
-                // username: data[0].username,
-                // email: email$,
-                // account_create: created_at,
-                // isAdmin: user.isAdmin
             };
             
             delete req.session.user.password

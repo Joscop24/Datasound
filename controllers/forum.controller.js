@@ -18,9 +18,9 @@ exports.getPageForum = (req, res) => {
 
 // Envoi du commentaire
 exports.sendComment = async (req, res) => {
-  const { commentary, id_user } = req.body;
+  const { commentary } = req.body;
   const image = req.file ? req.file.filename : false;
-  // console.log("image", req.file);
+  console.log("image", req.file);
 
   if (image) await db.query(`INSERT INTO comments SET commentary="${commentary}", id_user="${req.session.user.id}" , image="${image}"`),
     console.log("image OK");

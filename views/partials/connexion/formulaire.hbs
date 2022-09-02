@@ -40,12 +40,62 @@ Partial : Formulaire de Connexion / D'inscription
                         </div>
                     </div>
                     <div class="col-md-12 text-center mt-2">
+                        <button type="button" class="btn btn-outline-light" data-bs-toggle="modal"
+                            data-bs-target="#staticPasswordBackdrop">
+                            Mot de passe Oublié
+                        </button>
                         <button type="submit" class="btn btn-outline-light">Se connecter</button>
                     </div>
                 </form>
+
+
+                <!-- Modal -->
+                <form action="/lostpassword" method="post">
+                    <div class="modal fade" id="staticPasswordBackdrop" data-bs-backdrop="static"
+                        data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content bg-dark">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdropLabel">Mot de passe Oublié</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <label for="exampleFormControlInput1" class="form-label text-white">Votre adresse
+                                        mail</label>
+                                    <input type="email" class="form-control" id="exampleFormControlInput1"
+                                        placeholder="" name="resetmail">
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Envoyer</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+
             </div>
         </div>
         <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+
+
+
+
+
+
+            <!-- Button trigger modal -->
+
+
+
+
+
+
+
+
 
 
             <!-- Création d'un compte -->
