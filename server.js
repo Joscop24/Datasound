@@ -11,6 +11,8 @@ const MySQLStore = require("express-mysql-session")(expressSession);
 
 const upload = require('./utils/multer')
 
+var request = require('request'); // "Request" library
+
 // SPOTIFY
 var cors = require('cors');
 var querystring = require('querystring');
@@ -18,7 +20,7 @@ var cookieParser = require('cookie-parser');
 
 var client_id = 'd0f7e1ad3b7748cf9b2505355d27202e'; // Your client id
 var client_secret = '13b9507918564a3fbcd04947401d8b2c'; // Your secret
-var redirect_uri = 'http://localhost:3000/profil'; // Your redirect uri
+var redirect_uri = 'http://localhost:3000/callback'; // Your redirect uri
 
 
 
@@ -130,12 +132,12 @@ app.post('/logout', (req, res) => {
  * @param  {number} length The length of the string
  * @return {string} The generated string
  */
- var generateRandomString = function (length) {
+var generateRandomString = function (length) {
   var text = '';
   var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
   for (var i = 0; i < length; i++) {
-      text += possible.charAt(Math.floor(Math.random() * possible.length));
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
   }
   return text;
 };
@@ -155,18 +157,19 @@ app.get('/login', function (req, res) {
   // your application requests authorization
   var scope = 'user-read-private user-read-email';
   res.redirect('https://accounts.spotify.com/authorize?' +
-      querystring.stringify({
-          response_type: 'code',
-          client_id: client_id,
-          scope: scope,
-          redirect_uri: redirect_uri,
-          state: state
-      }));
+    querystring.stringify({
+      response_type: 'code',
+      client_id: client_id,
+      scope: scope,
+      redirect_uri: redirect_uri,
+      state: state
+    }));
 });
 
 
 // CallBACK
-app.get('/callback', function(req, res) {
+app.get('/callback', function (req, res) {
+  console.log('Callback spotify')
 
   // your application requests refresh and access tokens
   // after checking the state parameter
@@ -176,11 +179,13 @@ app.get('/callback', function(req, res) {
   var storedState = req.cookies ? req.cookies[stateKey] : null;
 
   if (state === null || state !== storedState) {
+    console.log('Callback spotify 2')
     res.redirect('/#' +
       querystring.stringify({
         error: 'state_mismatch'
       }));
   } else {
+    console.log('Callback spotify 3')
     res.clearCookie(stateKey);
     var authOptions = {
       url: 'https://accounts.spotify.com/api/token',
@@ -194,34 +199,45 @@ app.get('/callback', function(req, res) {
       },
       json: true
     };
+    console.log(authOptions);
 
-    request.post(authOptions, function(error, response, body) {
+    request.post(authOptions, async function (error, response, body) {
       if (!error && response.statusCode === 200) {
 
         var access_token = body.access_token,
-            refresh_token = body.refresh_token;
+          refresh_token = body.refresh_token;
 
         var options = {
           url: 'https://api.spotify.com/v1/me',
           headers: { 'Authorization': 'Bearer ' + access_token },
           json: true
         };
-        console.log("headhead", headers);
+        // console.log("headhead", options.headers);
 
         // use the access token to access the Spotify Web API
-        request.get(options, function(error, response, body) {
-          res.json({
-            body
-          })
+        // request.get(options, function (error, response, body) {
+        //   res.json({
+        //     body
+        //   })
+        //   console.log("Voici les infos sur mon compte Spotify", body);
+        // });
+
+        const data = await request.get(options, function (error, response, body) {
           console.log("Voici les infos sur mon compte Spotify", body);
         });
 
+        console.log('request auth spotify', data)
+
+        res.render('profil', { data })
+        // res.json({
+        //   body
+        // })
         // we can also pass the token to the browser to make requests from there
-        res.redirect('/#' +
-          querystring.stringify({
-            access_token: access_token,
-            refresh_token: refresh_token
-          }));
+        // res.redirect('/#' +
+        //   querystring.stringify({
+        //     access_token: access_token,
+        //     refresh_token: refresh_token
+        //   }));
       } else {
         res.redirect('/#' +
           querystring.stringify({
@@ -232,7 +248,7 @@ app.get('/callback', function(req, res) {
   }
 });
 
-app.get('/refresh_token', function(req, res) {
+app.get('/refresh_token', function (req, res) {
 
   // requesting access token from refresh token
   var refresh_token = req.query.refresh_token;
@@ -246,7 +262,7 @@ app.get('/refresh_token', function(req, res) {
     json: true
   };
 
-  request.post(authOptions, function(error, response, body) {
+  request.post(authOptions, function (error, response, body) {
     if (!error && response.statusCode === 200) {
       var access_token = body.access_token;
       res.send({
@@ -256,6 +272,46 @@ app.get('/refresh_token', function(req, res) {
   });
 });
 
+
+app.get('/topArtists', function (req, res){
+  var scope = "user-top-read"
+  var authOptions = {
+    url: "https://api.spotify.com/v1/me/top/",
+    form: {
+      type: "artists"
+    },
+    headers: {
+      'Authorization': 'Bearer ' + (new Buffer(client_id + ':' + client_secret).toString('base64'))
+    },
+    json: true
+  };
+
+  request.post(authOptions, async function(error, response, body){
+    if (!error && response.statusCode === 200){
+      var options = {
+        url: "https://api.spotify.com/v1/me/top/",
+        form: {
+          type: "artists"
+        }, 
+        headers: {
+          'Authorization': 'Bearer ' + (new Buffer(client_id + ':' + client_secret).toString('base64'))
+        },
+        json: true
+      };
+
+      const data= await request.get (options, function(error, response, body){
+        console.log("BEST ARTIST", body);
+      });
+
+      console.log('request top artist');
+
+      res.render('profil', { data })
+      
+    }
+  })
+
+
+});
 
 
 

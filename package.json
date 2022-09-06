@@ -30,6 +30,7 @@
     "nodemailer": "^6.7.8",
     "nodemon": "^2.0.19",
     "querystring": "^0.2.1",
+    "request": "^2.88.2",
     "sass": "^1.53.0"
   }
 }
