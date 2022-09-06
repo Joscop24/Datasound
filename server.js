@@ -319,6 +319,7 @@ app.get('/topArtists', function (req, res){
 // END SPOTIFY
 
 
+module.exports= { db, app }
 
 
 // /Forum
