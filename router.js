@@ -11,7 +11,7 @@ const { getPageHome } = require('./controllers/home.controllers')
 const { getPageAuth, getPageLink, getConnexionUser, getInscriptionUser, lostPassword } = require('./controllers/auth.controller')
 const { getPageProfil, getEditProfil, putUpdateProfil } = require('./controllers/user.controlllers')
 const { getPageAdmin, banUser } = require ('./controllers/admin.controller')
-const { getPageForum, editComment, deleteComment, sendComment } = require('./controllers/forum.controller')
+const { getPageForum, editComment, deleteComment, sendComment, getPing } = require('./controllers/forum.controller')
 const { envoiMail } = require('./controllers/nodemailer.controller')
 // const { commentary } = require ('./utils/multer')
 
@@ -27,6 +27,9 @@ const { test_md, connexion, link,
 /*
  * Routes
  * ****** */
+
+router.route("/ping")
+    .get(getPing)
 
 /*
 // Auth Controlleurs

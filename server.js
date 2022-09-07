@@ -65,6 +65,10 @@ let configDB = {
 
 db = mysql.createConnection(configDB);
 
+// Config ASYNC
+const util = require("util");
+db.query = util.promisify(db.query).bind(db);
+
 // Connexion de la db mysql
 db.connect((err) => {
   if (err) console.error("error connecting: ", err.stack);
@@ -313,14 +317,7 @@ app.get('/topArtists', function (req, res){
 
 });
 
-
-
-
-// END SPOTIFY
-
-
-module.exports= { db, app }
-
+// END SPOTIFY*
 
 // /Forum
 // reply to comment // Répondre au commentaire
@@ -338,3 +335,6 @@ app.get("/*", function (req, res) {
 app.listen(port, () =>
   console.log(`Joris : lancement du site sur le port ${port} !`)
 );
+
+// exports pour chai
+module.exports= { db, app }

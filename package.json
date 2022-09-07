@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "nodemon server.js",
     "mocha": "nodemon --exec 'mocha ./tests_unitaires/mocha/db.js'",
-    "chai": "nodemon --exec 'chai ./tests_unitaires/chai/test.js'"
+    "testmocha": "MODE=test nodemon --exec 'mocha ./tests_unitaires/mocha/db.js'",
+    "chai": "nodemon --exec 'mocha ./tests_unitaires/chai/test.js'",
+    "testchai": "MODE=test nodemon --exec 'mocha ./tests_unitaires/chai/test.js'"
   },
   "author": "Joris",
   "license": "ISC",
@@ -17,6 +19,7 @@
     "bootstrap": "^5.1.3",
     "bootstrap-icons": "^1.8.3",
     "chai": "^4.3.6",
+    "chai-http": "^4.3.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
@@ -34,6 +37,7 @@
     "nodemon": "^2.0.19",
     "querystring": "^0.2.1",
     "request": "^2.88.2",
-    "sass": "^1.53.0"
+    "sass": "^1.53.0",
+    "should": "^13.2.3"
   }
 }

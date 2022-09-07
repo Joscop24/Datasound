@@ -7,10 +7,27 @@
 require("dotenv").config();
 
 
-// Page Forum
-exports.getPageForum = (req, res) => {
-  const data = db.query(`SELECT * FROM user INNER JOIN comments ON user.id = comments.id_user`)
+//PING POUR TEST UNITAIRE
+exports.getPing = (req, res) => {
+  const data = {
+    name: "pong !"
+  }
+  console.log('Controller ping')
+  if (process.env.MODE === "test") {
+    res.json({ data })
+  } else {
+    res.render("home", { data })
+  }
+}
 
+
+// Page Forum
+exports.getPageForum = async (req, res) => {
+  let data;
+  
+  data = await db.query(`SELECT * FROM user INNER JOIN comments ON user.id = comments.id_user`)
+  console.log('infoData' , data);
+  
   // TEST UNITAIRE OU VRAI CODE
   if (process.env.MODE === "test") {
     res.json({ data })
@@ -35,9 +52,8 @@ exports.sendComment = async (req, res) => {
   else
     data = await db.query(`INSERT INTO comments SET commentary="${commentary}", id_user="${req.session.user.id}" , image=''`)
 
-
-
   // TEST UNITAIRE OU VRAI CODE
+  console.log(data);
   if (process.env.MODE === "test") {
     res.json({ data })
   } else {
@@ -46,16 +62,13 @@ exports.sendComment = async (req, res) => {
   }
 }
 
-
-
-
-
 // Modification du Commentaire
 exports.editComment = async (req, res) => {
   const { id_comments } = req.params;
   const { newcommentary } = req.body;
+  let data;
 
-  const data = await db.query(`UPDATE comments SET commentary="${newcommentary}" WHERE id_comments=${id_comments};`)
+  data = await db.query(`UPDATE comments SET commentary="${newcommentary}" WHERE id_comments=${id_comments};`)
 
   // TEST UNITAIRE OU VRAI CODE
   if (process.env.MODE === "test") {
