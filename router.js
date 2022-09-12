@@ -11,7 +11,7 @@ const { getPageHome } = require('./controllers/home.controllers')
 const { getPageAuth, getPageLink, getConnexionUser, getInscriptionUser, lostPassword } = require('./controllers/auth.controller')
 const { getPageProfil, getEditProfil, putUpdateProfil } = require('./controllers/user.controlllers')
 const { getPageAdmin, banUser } = require ('./controllers/admin.controller')
-const { getPageForum, editComment, deleteComment, sendComment, getPing } = require('./controllers/forum.controller')
+const { getPageForum, editComment, getCommentId, deleteComment, sendComment, getPing } = require('./controllers/forum.controller')
 const { envoiMail } = require('./controllers/nodemailer.controller')
 // const { commentary } = require ('./utils/multer')
 
@@ -92,13 +92,13 @@ router.route('/forum')
 router.route("/comments")
     .post(upload.single('image'),sendComment, envoiComment )
 
-
-
+    
+router.route('/comments/:id_comments')
+    //    
+    .get(getCommentId)
     // Modification du commentaire
-router.route('/comments/:id_comments')
     .put(modifComment, editComment )
-// Suppression du commentaire
-router.route('/comments/:id_comments')
+    // Suppression du commentaire
     .delete(suppComment, deleteComment)
 
 

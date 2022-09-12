@@ -7,7 +7,7 @@
     "dev": "nodemon server.js",
     "mocha": "nodemon --exec 'mocha ./tests_unitaires/mocha/db.js'",
     "testmocha": "MODE=test nodemon --exec 'mocha ./tests_unitaires/mocha/db.js'",
-    "chai": "nodemon --exec 'mocha ./tests_unitaires/chai/test.js'",
+    "chai": "MODE=test nodemon --exec 'mocha ./tests_unitaires/chai/test.js'",
     "testchai": "MODE=test nodemon --exec 'mocha ./tests_unitaires/chai/test.js'"
   },
   "author": "Joris",

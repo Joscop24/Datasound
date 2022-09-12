@@ -27,7 +27,6 @@ exports.getPageForum = async (req, res) => {
   
   data = await db.query(`SELECT * FROM user INNER JOIN comments ON user.id = comments.id_user`)
   // console.log('infoData' , data);
-  
   // TEST UNITAIRE OU VRAI CODE
   if (process.env.MODE === "test") {
     res.json({ data })
@@ -64,6 +63,17 @@ exports.sendComment = async (req, res) => {
     res.redirect("back");
   }
 }
+exports.getCommentId = async (req, res) => {
+  const { id_comments } = req.params;
+  let data;
+
+  console.log("idie");
+  data = await db.query(`SELECT * FROM user INNER JOIN comments ON user.id = comments.id_user where id_comments=${id_comments}`)
+  // TEST UNITAIRE OU VRAI CODE
+  if (process.env.MODE === "test") {
+    res.json({ data })
+  }
+}
 
 // Modification du Commentaire
 exports.editComment = async (req, res) => {
@@ -72,7 +82,7 @@ exports.editComment = async (req, res) => {
   let data;
 
   data = await db.query(`UPDATE comments SET commentary="${newcommentary}" WHERE id_comments=${id_comments};`)
-
+  console.log("zaef");
   // TEST UNITAIRE OU VRAI CODE
   if (process.env.MODE === "test") {
     res.json({ data })

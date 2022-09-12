@@ -59,7 +59,20 @@ describe('CHAI // CONTROLLER // COMMENTS', () => {
 
     });
   
-    
+     // // GET ID
+     it('CHAI // GET ID // COMMENTS', (done) => {
+        chai
+            .request(app)
+            .get(`/comments/${id.insertId}`)
+            .set("Cookie", cookieSess)
+            .end((err, res) => {
+                if (err) return done(err),
+
+                    res.body.data.should.be.a('array');
+                res.should.have.status(200)
+                done()
+            })
+    });
 
     // Post
     it('CHAI // POST // COMMENTS', (done) => {
@@ -82,52 +95,43 @@ describe('CHAI // CONTROLLER // COMMENTS', () => {
             })
     });
 
-    // GET ID
-    it('CHAI // GET // COMMENTS', (done) => {
-        chai
-            .request(app)
-            .get('/comments/:id_comments')
-            .set("Cookie", cookieSess)
-            .end((err, res) => {
-                if (err) return done(err),
-
-                    res.body.data.should.be.a('array');
-                res.should.have.status(200)
-                done()
-            })
-    });
+   
 
     // PUT
     it ('CHAI // PUT // COMMENTS', (done) => {
         chai
             .request(app)
-            .put(`/comments/${id}`)
+            .put(`/comments/${id.insertId}`)
             .set("Accept", "application/json")
             .set("Cookie", cookieSess)
+            .field("Content-Type", "multipart/form-data")
+            .field("id_comment", `${id.insertId}`)
+            .field("id_user", "2")
+            .attach("image", path.resolve(__dirname, "../../public/images/kekra.jpeg"))
             .end((err, res) => {
                 if(err) return done(err)
-                console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaa", res.body);
 
-                res.body.data.should.be.a('array');
+                res.body.data.should.be.a('object');
                 res.should.have.status(200)
                 done()
             })
     })
 
     // // DELETE
-    // it ('CHAI // DELETE // COMMENTS', (done) => {
-    //     chai
-    //         .request(app)
-    //         .delete(`/comments/:id_comments`)
-    //         .set("Accept", "application/json")
-    //         .set("Cookie", cookieSess)
-    //         .end((err, res) => {
-    //             if(err) return done(err)
+    it ('CHAI // DELETE // COMMENTS', (done) => {
+        // console.log('iki', id);
+        chai
+            .request(app)
+            .delete(`/comments/${id.insertId}`)
+            .set("Accept", "application/json")
+            .set("Cookie", cookieSess)
+            .end((err, res) => {
+                if(err) return done(err)
 
-    //             res.should.have.status(200)
-    //             done()
-    //     })
-    // })
+                res.should.have.status(200)
+                done()
+        })
+    })
 
 
 })
