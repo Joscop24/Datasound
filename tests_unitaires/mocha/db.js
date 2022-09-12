@@ -38,7 +38,7 @@ describe('CRUD LOGIN', () => {
             await db.query(`DELETE FROM comments WHERE id_comments = ${newComment.id_comments}`)
             console.log("COMMENTAIRE DELETE")
         })*/
-    
+
 
     it("Get ALL Commentaire", async () => {
         let data = await db.query(`Select * from comments`)

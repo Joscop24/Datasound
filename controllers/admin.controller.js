@@ -24,9 +24,9 @@ exports.postDataUser = async (req, res) => {
       if (err) throw err;
 
     }
-    );
-    let body = req.body;
-    res.redirect("back");
+  );
+  let body = req.body;
+  res.redirect("back");
 }
 
 

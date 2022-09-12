@@ -24,7 +24,7 @@ exports.getPing = (req, res) => {
 // Page Forum
 exports.getPageForum = async (req, res) => {
   let data;
-  
+
   data = await db.query(`SELECT * FROM user INNER JOIN comments ON user.id = comments.id_user`)
   // console.log('infoData' , data);
   // TEST UNITAIRE OU VRAI CODE
@@ -51,7 +51,7 @@ exports.sendComment = async (req, res) => {
     data = await db.query(`INSERT INTO comments SET commentary="${commentary}", id_user="${req.session.user.id}" , image="${image}"`)
   else
     data = await db.query(`INSERT INTO comments SET commentary="${commentary}", id_user="${req.session.user.id}" , image=''`)
-  
+
   // console.log('sendComment 2')
 
   // TEST UNITAIRE OU VRAI CODE
@@ -63,6 +63,8 @@ exports.sendComment = async (req, res) => {
     res.redirect("back");
   }
 }
+
+
 exports.getCommentId = async (req, res) => {
   const { id_comments } = req.params;
   let data;

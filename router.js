@@ -10,7 +10,7 @@ const upload = require('./utils/multer')
 const { getPageHome } = require('./controllers/home.controllers')
 const { getPageAuth, getPageLink, getConnexionUser, getInscriptionUser, lostPassword } = require('./controllers/auth.controller')
 const { getPageProfil, getEditProfil, putUpdateProfil } = require('./controllers/user.controlllers')
-const { getPageAdmin, banUser } = require ('./controllers/admin.controller')
+const { getPageAdmin, banUser } = require('./controllers/admin.controller')
 const { getPageForum, editComment, getCommentId, deleteComment, sendComment, getPing } = require('./controllers/forum.controller')
 const { envoiMail } = require('./controllers/nodemailer.controller')
 // const { commentary } = require ('./utils/multer')
@@ -18,10 +18,10 @@ const { envoiMail } = require('./controllers/nodemailer.controller')
 
 // Import middlewares
 const { test_md, connexion, link,
-        login, inscription,profil,
-        editprofil, updateProfil, imAdmin,
-        ban, forum, modifComment,
-        suppComment, nodemailer, envoiComment } = require('./middlewares/index')
+    login, inscription, profil,
+    editprofil, updateProfil, imAdmin,
+    ban, forum, modifComment,
+    suppComment, nodemailer, envoiComment } = require('./middlewares/index')
 
 
 /*
@@ -90,14 +90,14 @@ router.route('/forum')
 
 // Envoi Comment    
 router.route("/comments")
-    .post(upload.single('image'),sendComment, envoiComment )
+    .post(upload.single('image'), sendComment, envoiComment)
 
-    
+
 router.route('/comments/:id_comments')
     //    
     .get(getCommentId)
     // Modification du commentaire
-    .put(modifComment, editComment )
+    .put(modifComment, editComment)
     // Suppression du commentaire
     .delete(suppComment, deleteComment)
 

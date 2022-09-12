@@ -160,13 +160,13 @@ app.get("/login", function (req, res) {
   var scope = "user-read-private user-read-email";
   res.redirect(
     "https://accounts.spotify.com/authorize?" +
-      querystring.stringify({
-        response_type: "code",
-        client_id: client_id,
-        scope: scope,
-        redirect_uri: redirect_uri,
-        state: state,
-      })
+    querystring.stringify({
+      response_type: "code",
+      client_id: client_id,
+      scope: scope,
+      redirect_uri: redirect_uri,
+      state: state,
+    })
   );
 });
 
@@ -187,9 +187,9 @@ app.get("/callback", function (req, res) {
     console.log("Callback spotify 2");
     res.redirect(
       "/#" +
-        querystring.stringify({
-          error: "state_mismatch",
-        })
+      querystring.stringify({
+        error: "state_mismatch",
+      })
     );
   } else {
     console.log("Callback spotify 3", code);
@@ -208,28 +208,28 @@ app.get("/callback", function (req, res) {
       },
       json: true,
     };
-    console.log("callback" ,authOptions);
+    console.log("callback", authOptions);
 
     request.post(authOptions, async function (error, response, body) {
       if (!error && response.statusCode === 200) {
         var access_token = body.access_token,
           refresh_token = body.refresh_token;
 
-          var options = {
-            url: "https://api.spotify.com/v1/me",
-            headers: { Authorization: "Bearer " + access_token },
-            json: true,
-          };
+        var options = {
+          url: "https://api.spotify.com/v1/me",
+          headers: { Authorization: "Bearer " + access_token },
+          json: true,
+        };
         // console.log("headhead", options.headers);
-/*
-        use the access token to access the Spotify Web API
-        request.get(options, function (error, response, body) {
-          res.json({
-            body
-          })
-          console.log("Voici les infos sur mon compte Spotify", body);
-        });
-*/
+        /*
+                use the access token to access the Spotify Web API
+                request.get(options, function (error, response, body) {
+                  res.json({
+                    body
+                  })
+                  console.log("Voici les infos sur mon compte Spotify", body);
+                });
+        */
         const data = await request.get(
           options,
           function (error, response, body) {
@@ -254,9 +254,9 @@ app.get("/callback", function (req, res) {
       } else {
         res.redirect(
           "/#" +
-            querystring.stringify({
-              error: "invalid_token",
-            })
+          querystring.stringify({
+            error: "invalid_token",
+          })
         );
       }
     });
@@ -295,7 +295,7 @@ app.get("/refresh_token", function (req, res) {
 // GETTOPARTISTS
 app.get("/topArtists", function (req, res) {
   var scope = "user-top-read";
-  var type = "artists" 
+  var type = "artists"
   var code = req.query.code || null;
   var state = req.query.state || null;
   var storedState = req.cookies ? req.cookies[stateKey] : null;
@@ -304,8 +304,8 @@ app.get("/topArtists", function (req, res) {
   var authOptions = {
     url: "https://api.spotify.com/v1/me/top/" + type,
     form: {
-      Accept : "application/json",
-      Contenttype : "appplication/json",
+      Accept: "application/json",
+      Contenttype: "appplication/json",
     },
     headers: {
       Authorization:
@@ -318,8 +318,8 @@ app.get("/topArtists", function (req, res) {
   console.log("COUCOU JE SUIS LA", authOptions);
   request.post(authOptions, async function (error, response, body) {
     if (!error && response.statusCode === 200) {
-       res.redirect("/# " + querystring.stringify({error: invalid_}))
-      
+      res.redirect("/# " + querystring.stringify({ error: invalid_ }))
+
       // var options = {
       //   url: "https://api.spotify.com/v1/me/top/",
       //   form: {
@@ -332,7 +332,7 @@ app.get("/topArtists", function (req, res) {
       //   },
       //   json: true,
       // };
-    console.log("COUCOU JE SUIS LA 222", options);
+      console.log("COUCOU JE SUIS LA 222", options);
 
       // const data = await request.get(options, function (error, response, body) {
       //   console.log("BEST ARTIST", body);
@@ -345,7 +345,7 @@ app.get("/topArtists", function (req, res) {
       console.log("TOUT EST OK", authOptions);
       const data = await request.get(authOptions, (error, response, body) => {
         console.log("Voici les infos sur les top artists", body);
-        res.json({data});
+        res.json({ data });
       })
     }
   });

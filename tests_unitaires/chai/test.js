@@ -58,9 +58,9 @@ describe('CHAI // CONTROLLER // COMMENTS', () => {
             })
 
     });
-  
-     // // GET ID
-     it('CHAI // GET ID // COMMENTS', (done) => {
+
+    // // GET ID
+    it('CHAI // GET ID // COMMENTS', (done) => {
         chai
             .request(app)
             .get(`/comments/${id.insertId}`)
@@ -95,10 +95,10 @@ describe('CHAI // CONTROLLER // COMMENTS', () => {
             })
     });
 
-   
+
 
     // PUT
-    it ('CHAI // PUT // COMMENTS', (done) => {
+    it('CHAI // PUT // COMMENTS', (done) => {
         chai
             .request(app)
             .put(`/comments/${id.insertId}`)
@@ -109,7 +109,7 @@ describe('CHAI // CONTROLLER // COMMENTS', () => {
             .field("id_user", "2")
             .attach("image", path.resolve(__dirname, "../../public/images/kekra.jpeg"))
             .end((err, res) => {
-                if(err) return done(err)
+                if (err) return done(err)
 
                 res.body.data.should.be.a('object');
                 res.should.have.status(200)
@@ -118,7 +118,7 @@ describe('CHAI // CONTROLLER // COMMENTS', () => {
     })
 
     // // DELETE
-    it ('CHAI // DELETE // COMMENTS', (done) => {
+    it('CHAI // DELETE // COMMENTS', (done) => {
         // console.log('iki', id);
         chai
             .request(app)
@@ -126,11 +126,11 @@ describe('CHAI // CONTROLLER // COMMENTS', () => {
             .set("Accept", "application/json")
             .set("Cookie", cookieSess)
             .end((err, res) => {
-                if(err) return done(err)
+                if (err) return done(err)
 
                 res.should.have.status(200)
                 done()
-        })
+            })
     })
 
 
