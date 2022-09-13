@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "nodemon server.js",
     "mocha": "nodemon --exec 'mocha ./tests_unitaires/mocha/db.js'",
+    "swagger": "MODE=test nodemon server.js",
     "testmocha": "MODE=test nodemon --exec 'mocha ./tests_unitaires/mocha/db.js'",
     "chai": "MODE=test nodemon --exec 'mocha ./tests_unitaires/chai/test.js'",
     "testchai": "MODE=test nodemon --exec 'mocha ./tests_unitaires/chai/test.js'"
@@ -26,6 +27,7 @@
     "express": "^4.18.1",
     "express-handlebars": "^6.0.6",
     "express-mysql-session": "^2.1.8",
+    "express-oas-generator": "^1.0.45",
     "express-session": "^1.17.3",
     "http": "0.0.1-security",
     "method-override": "^3.0.0",
@@ -38,6 +40,7 @@
     "querystring": "^0.2.1",
     "request": "^2.88.2",
     "sass": "^1.53.0",
-    "should": "^13.2.3"
+    "should": "^13.2.3",
+    "swagger-ui-express": "^4.5.0"
   }
 }

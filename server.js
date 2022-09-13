@@ -13,6 +13,25 @@ const upload = require("./utils/multer");
 
 var request = require("request"); // "Request" library
 
+
+// Import des middlewares*
+// const { isAdmin } = require("./middlewares/index");
+const app = express();
+
+
+
+// Swagger Configuration
+const swaggerUi = require('swagger-ui-express'),
+swaggerDocument = require('./config/api/swagger.json')
+
+// Générateur Swagger // Uncomment pour crée le json
+// const expressOasGenerator = require('express-oas-generator');
+// expressOasGenerator.init(app, {})
+
+
+
+
+
 // SPOTIFY
 var cors = require("cors");
 var querystring = require("querystring");
@@ -27,9 +46,7 @@ const port = 3000;
 // Déstructuration de process.env
 const { DB_DATABASE, DB_HOST, DB_PASSWORD, DB_USER, PORT_NODE } = process.env;
 
-// Import des middlewares*
-const { isAdmin } = require("./middlewares/index");
-const app = express();
+
 
 /*
  * Configuration Handlebars
@@ -111,8 +128,14 @@ app.use("*", (req, res, next) => {
   next();
 });
 
+
+/*
+ROUTER DE L'APPLICATION
+*/
+app.use('/api/v1', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 const ROUTER = require("./router");
-app.use(ROUTER);
+app.use("/", ROUTER);
+// ROUTE pour Swagger
 
 // CRUD CONNEXION
 // Logout // Déconnexion
@@ -152,7 +175,7 @@ app
   .use(cors())
   .use(cookieParser());
 
-app.get("/login", function (req, res) {
+app.get("/login_spotify", function (req, res) {
   var state = generateRandomString(16);
   res.cookie(stateKey, state);
 
@@ -291,7 +314,6 @@ app.get("/refresh_token", function (req, res) {
 });
 
 
-
 // GETTOPARTISTS
 app.get("/topArtists", function (req, res) {
   var scope = "user-top-read";
@@ -362,11 +384,11 @@ app.get("/topArtists", function (req, res) {
 
 /* ERROR 404 */
 // A Mettre a la fin
-app.get("/*", function (req, res) {
-  res.render("error404", {
-    user: true,
-  });
-});
+// app.get("/*", function (req, res) {
+//   res.render("error404", {
+//     user: true,
+//   });
+// });
 
 app.listen(port, () =>
   console.log(`Joris : lancement du site sur le port ${port} !`)

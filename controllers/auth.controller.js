@@ -18,8 +18,9 @@ exports.getPageAuth = (req, res) => {
 
 // Connexion du user
 exports.getConnexionUser = (req, res) => {
+  console.log('connexionUser')
   const { email, password } = req.body;
-  // console.log('connexionUser')
+  
   db.query(
     `SELECT password, email from user WHERE email="${email}"`,
     function (err, data) {

@@ -1,0 +1,194 @@
+{
+    "definitions": {},
+    "info": {
+        "title": "Datasound",
+        "version": "1.0.0",
+        "license": {
+            "name": "ISC"
+        },
+        "description": "Specification JSONs: [v2](/api-spec/v2), [v3](/api-spec/v3).\n\narchitecture de Datasound (Projet)"
+    },
+    "paths": {
+        "/ping": {
+            "get": {
+                "summary": "/ping",
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "responses": {},
+                "tags": [
+                    "PING"
+                ]
+            }
+        },
+        "/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "login",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "password",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            },
+            "get": {
+                "summary": "/login",
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "responses": {},
+                "tags": []
+            }
+        },
+        "/forum": {
+            "get": {
+                "summary": "/forum",
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "responses": {},
+                "tags": []
+            }
+        },
+        "/comments": {
+            "post": {
+                "summary": "/comments",
+                "operationId": "uploadFile",
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "commentary",
+                        "in": "formData",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id_user",
+                        "in": "path",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "image",
+                        "in": "formData",
+                        "description": "file to upload",
+                        "required": false,
+                        "type": "file"
+                    }
+                ],
+                "responses": {},
+                "tags": [
+                    "Comments"
+                ]
+            }
+        },
+        "/comments/{id_comments}": {
+            "get": {
+                "summary": "/comments/{id_comments}",
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id_comments",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "tags": [
+                    "Comments"
+                ]
+            },
+            "put": {
+                "summary": "/comments/{id_comments}",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "parameters": [
+                    {
+                        "name": "id_comments",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "name": "newcommentary",
+                        "in": "formData",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id_user",
+                        "in": "path",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "image",
+                        "in": "formData",
+                        "description": "file to upload",
+                        "required": false,
+                        "type": "file"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "tags": [
+                    "Comments  "
+                ]
+            },
+            "delete": {
+                "summary": "/comments/{id_comments}",
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id_comments",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "tags": [
+                    "Comments"
+                ]
+            }
+        }
+    },
+    "swagger": "2.0",
+    "tags": []
+}
