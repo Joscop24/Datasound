@@ -48,15 +48,6 @@
                         "description": "successful operation"
                     }
                 }
-            },
-            "get": {
-                "summary": "/login",
-                "consumes": [
-                    "application/json"
-                ],
-                "parameters": [],
-                "responses": {},
-                "tags": []
             }
         },
         "/forum": {
@@ -66,8 +57,62 @@
                     "application/json"
                 ],
                 "parameters": [],
-                "responses": {},
-                "tags": []
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "flash": {
+                                    "type": "string",
+                                    "example": "get comments"
+                                },
+                                "message": {
+                                    "type": "string",
+                                    "example": "sucess get"
+                                },
+                                "comments": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id_comments": {
+                                                "type": "number"
+                                            },
+                                            "commentary": {
+                                                "type": "string"
+                                            },
+                                            "id_user": {
+                                                "type": "number"
+                                            },
+                                            "image": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "id_comments",
+                                            "id_user"
+                                        ]
+                                    },
+                                    "example": [
+                                        {
+                                            "id_comments": 350,
+                                            "commentary": "string",
+                                            "id_user": 1,
+                                            "image": "default.png"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "Comments"
+                ],
+                "produces": [
+                    "application/json"
+                ]
             }
         },
         "/comments": {
@@ -129,18 +174,18 @@
             "put": {
                 "summary": "/comments/{id_comments}",
                 "consumes": [
-                    "multipart/form-data"
+                    "application/x-www-form-urlencoded"
                 ],
                 "parameters": [
                     {
                         "name": "id_comments",
                         "in": "path",
-                        "required": true
+                        "required": true,
+                        "type": "number"
                     },
                     {
                         "name": "newcommentary",
                         "in": "formData",
-                        "required": false,
                         "type": "string"
                     },
                     {
@@ -148,22 +193,15 @@
                         "in": "path",
                         "required": true,
                         "type": "number"
-                    },
-                    {
-                        "name": "image",
-                        "in": "formData",
-                        "description": "file to upload",
-                        "required": false,
-                        "type": "file"
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "successful operation"
+                        "description": "enfin reussi"
                     }
                 },
                 "tags": [
-                    "Comments  "
+                    "Comments"
                 ]
             },
             "delete": {

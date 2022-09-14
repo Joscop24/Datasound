@@ -79,10 +79,12 @@ exports.getCommentId = async (req, res) => {
 
 // Modification du Commentaire
 exports.editComment = async (req, res) => {
-  console.log("zaef", req.body);
+  console.log("aaaaaaaaaaaaaaaaaaaa");
+  console.log(" data reqbody", req.body);
+  console.log("data reqparams", req.params);
   const { id_comments } = req.params;
   const { newcommentary } = req.body;
-  console.log("info", newcommentary);
+  // console.log("info", newcommentary);
   let data;
 
   data = await db.query(`UPDATE comments SET commentary="${newcommentary}" WHERE id_comments=${id_comments};`)
