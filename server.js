@@ -343,36 +343,36 @@ app.get('/getTopArtist', (req, res) => {
 const getToken = async () => {
   client_id: "d0f7e1ad3b7748cf9b2505355d27202e"
   client_secret: "13b9507918564a3fbcd04947401d8b2c"
-
+  var scopes = "user-top-read"
   const result = await fetch("https://accounts.spotify.com/api/token", {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
-      'Authorization': 'Basic ' + btoa(client_id + ":" + client_secret)
+      'Authorization': 'Basic ' + btoa(client_id + ":" + client_secret+ ":" + scopes)
     },
     body: 'grant_type=client_credentials'
   });
+  console.log("daaaaaaaaaaaaaaaaaaaa",result );
   const data = await result.json()
   return topArtist(data.access_token);
 }
 
 const topArtist = async (token) => {
   console.log("token bbbbbbbbbbbbbbbbbb", token);
-  var scopes = "user-top-read"
+  
   const result = await fetch(`https://api.spotify.com/v1/me/top/artists`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + token,
-      'type': "artists",
-      'scopes' : scopes
+      'type': "artists"
     },
-  });
+  })
   console.log("resultat", result);
   const data = await result.json()
-  console.log("test data items", data.items);
+  console.log("test data items", data);
   // console.log("test topartist", data.access_token);
-  // return data
+  return data
 
 }
 
