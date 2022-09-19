@@ -9,7 +9,6 @@ exports.envoiMail = async (req, res) => {
   try {
     const { mail, objet, message } = req.body;
 
-    // etape 3
     if (!mail || !objet || !message) return res.redirect('/')
 
     const data = await transporter.sendMail({

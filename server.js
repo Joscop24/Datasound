@@ -343,37 +343,40 @@ app.get('/getTopArtist', (req, res) => {
 const getToken = async () => {
   client_id: "d0f7e1ad3b7748cf9b2505355d27202e"
   client_secret: "13b9507918564a3fbcd04947401d8b2c"
-  var scopes = "user-top-read"
+  console.log("JE SUIS DANS LE GET TOKEN");
+
   const result = await fetch("https://accounts.spotify.com/api/token", {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
-      'Authorization': 'Basic ' + btoa(client_id + ":" + client_secret+ ":" + scopes)
+      'Authorization': 'Basic ' + btoa(client_id + ":" + client_secret)
     },
     body: 'grant_type=client_credentials'
   });
-  console.log("daaaaaaaaaaaaaaaaaaaa",result );
+  // console.log("RESULT", result );
   const data = await result.json()
-  return topArtist(data.access_token);
+  // console.log("voici mon token ", data.access_token);
+  const token = data.access_token
+  return topArtist(token);
 }
 
 const topArtist = async (token) => {
-  console.log("token bbbbbbbbbbbbbbbbbb", token);
+  console.log("JE SUIS DANS TOP ARTISTS");
+  // console.log("token bbbbbbbbbbbbbbbbbb", token);
   
   const result = await fetch(`https://api.spotify.com/v1/me/top/artists`, {
-    method: 'GET',
+    method: 'POST',
+    params:{
+      scopes: "user-top-read"
+    },
     headers: {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + token,
-      'type': "artists"
     },
   })
   console.log("resultat", result);
   const data = await result.json()
-  console.log("test data items", data);
-  // console.log("test topartist", data.access_token);
   return data
-
 }
 
 

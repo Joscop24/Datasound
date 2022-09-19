@@ -9,7 +9,8 @@ const expressSession = require("express-session");
 const MySQLStore = require("express-mysql-session")(expressSession);
 // const { setSession } = require("../utils/setSession");
 const { MODE } = process.env
-const transporter = require("../config/nodemailer");
+const { transporter } = require("../config/nodemailer");
+const jwt = require("jsonwebtoken")
 
 
 exports.getPageAuth = (req, res) => {
@@ -20,7 +21,7 @@ exports.getPageAuth = (req, res) => {
 exports.getConnexionUser = (req, res) => {
   console.log('connexionUser')
   const { email, password } = req.body;
-  
+
   db.query(
     `SELECT password, email from user WHERE email="${email}"`,
     function (err, data) {
@@ -73,15 +74,55 @@ exports.getInscriptionUser = (req, res) => {
 
   if (password === confirmpassword) {
     bcrypt.hash(password, bcrypt_salt, function (err, hash) {
-      db.query(`INSERT INTO user SET name="${name}", surname="${surname}", username="${username}", email="${email}" , password="${hash}", isAdmin="0", isBan="0"`),
-        function (err, data) {
-          if (err) throw err;
-        };
+      db.query(`INSERT INTO user SET name="${name}", surname="${surname}", username="${username}", email="${email}" , password="${hash}", isAdmin="0", isBan="0";`)
     });
-    res.redirect('/');
+    console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+    const token = jwt.sign({ foo: 'bar' }, "SecretKey");
+
+    // GESTION ENVOI POUR CONFIRMER LE MAIL
+    console.log("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", email);
+
+    try {
+
+      const data = transporter.sendMail({
+        from: '"Datasound" <jorisbourdin.pro@gmail.com>',
+        to: email,
+        subject: `Confirmation du compte Datasound`,
+        html: `
+                    <h2> Bonjour, </h2>
+                    <h5>Pour activer votre compte utilisateur, veuillez cliquer sur le lien ci-dessous </h5><br>
+                    http://localhost:3000/verification/${token}
+                `
+      })
+
+      console.log("Email de confirmation de compte est bien envoyé !!", data)
+      console.log("1er token", token);
+      res.redirect('/');
+    } catch (error) {
+      console.log("error")
+      res.redirect('/')
+    }
+
   } else {
     res.render("connexion", { flash2: "Votre mot de passe de confirmation n'est pas conforme" })
   }
+}
+
+exports.getPageVerification = (req, res) => {
+  const { token } = req.params
+  // console.log(token);
+
+  jwt.verify(token, "SecretKey", (err, decoded) => {
+    if (err) {
+      console.log(err);
+      res.send('Email de verification echoué, le lien est invalide');
+    }
+    else {
+      console.log('Email de verification success');
+      res.redirect("/");
+    }
+  });
+
 }
 
 // Affichage de la page Link

@@ -31,6 +31,7 @@
     "express-oas-generator": "^1.0.45",
     "express-session": "^1.17.3",
     "http": "0.0.1-security",
+    "jsonwebtoken": "^8.5.1",
     "method-override": "^3.0.0",
     "mocha": "^10.0.0",
     "multer": "^1.4.5-lts.1",
