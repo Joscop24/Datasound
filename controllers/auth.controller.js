@@ -69,14 +69,22 @@ exports.lostPassword = async (req, res) => {
 
 
 // Inscription du User
-exports.getInscriptionUser = (req, res) => {
+exports.getInscriptionUser = async (req, res) => {
   const { name, surname, username, email, password, confirmpassword } = req.body;
 
   if (password === confirmpassword) {
-    bcrypt.hash(password, bcrypt_salt, function (err, hash) {
-      db.query(`INSERT INTO user SET name="${name}", surname="${surname}", username="${username}", email="${email}" , password="${hash}", isAdmin="0", isBan="0", isVerified="0";`)
-    });
-    const token = jwt.sign({ foo: 'bar' }, "SecretKey");
+    // bcrypt.hash(password, bcrypt_salt, function (err, hash) {
+    //   db.query(`INSERT INTO user SET name="${name}", surname="${surname}", username="${username}", email="${email}" , password="${hash}", isAdmin="0", isBan="0", isVerified="0";`)
+    // });
+    // req.session.user.id = 
+
+    const newUser = await db.query(`INSERT INTO user SET name="${name}", surname="${surname}", username="${username}", email="${email}" , password="${await bcrypt.hash(password, bcrypt_salt)}", isAdmin="0", isBan="0", isVerified="0";`)
+    const [user] = await db.query(`SELECT * FROM user WHERE id = ${newUser.insertId}`)
+
+    const token = jwt.sign({ user }, "SecretKey");
+
+    // req.session.user = user
+    req.session.token = token
 
     // GESTION ENVOI POUR CONFIRMER LE MAIL
 
@@ -97,7 +105,7 @@ exports.getInscriptionUser = (req, res) => {
       console.log("1er token", token);
       res.redirect('/');
     } catch (error) {
-      console.log("error")
+      console.log("error", error)
       res.redirect('/')
     }
 
@@ -107,18 +115,26 @@ exports.getInscriptionUser = (req, res) => {
 }
 
 exports.getPageVerification = (req, res) => {
-  const { token } = req.params
-  // console.log(token);
+  const { token } = req.session
+  console.log("voici le token", token);
 
-  jwt.verify(token, "SecretKey", (err, decoded) => {
+  jwt.verify(token, "SecretKey", async (err, decoded) => {
+    console.log("decoded", decoded);
     if (err) {
       console.log(err);
       res.send('Email de verification echoué, le lien est invalide');
     }
     else {
-      console.log('Email de verification success');
-      db.query(`UPDATE user SET isVerified="1"`)
-      res.redirect("/");
+      const [user] = await db.query(`SELECT * FROM user WHERE id="${decoded.user.id}"`)
+    
+      if (!user) {
+        console.log("pb user");
+        res.redirect("/")
+      } else {
+        console.log('Email de verification success');
+        db.query(`UPDATE user SET isVerified="1" WHERE id="${decoded.user.id}"`)
+        res.redirect("/");
+      }
     }
   });
 }

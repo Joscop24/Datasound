@@ -36,7 +36,7 @@ exports.putUpdateProfil = (req, res) => {
 
       console.log(req.session);
       db.query(`SELECT * FROM user WHERE id=${req.session.user.id};`, (err, data) => {
-        console.log("user", data)
+        console.log("VLAAAAAAAAAAAAAAAAAA", data)
         req.session.user = {
           ...data[0]
         };
