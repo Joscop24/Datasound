@@ -74,13 +74,11 @@ exports.getInscriptionUser = (req, res) => {
 
   if (password === confirmpassword) {
     bcrypt.hash(password, bcrypt_salt, function (err, hash) {
-      db.query(`INSERT INTO user SET name="${name}", surname="${surname}", username="${username}", email="${email}" , password="${hash}", isAdmin="0", isBan="0";`)
+      db.query(`INSERT INTO user SET name="${name}", surname="${surname}", username="${username}", email="${email}" , password="${hash}", isAdmin="0", isBan="0", isVerified="0";`)
     });
-    console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
     const token = jwt.sign({ foo: 'bar' }, "SecretKey");
 
     // GESTION ENVOI POUR CONFIRMER LE MAIL
-    console.log("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", email);
 
     try {
 
@@ -119,10 +117,10 @@ exports.getPageVerification = (req, res) => {
     }
     else {
       console.log('Email de verification success');
+      db.query(`UPDATE user SET isVerified="1"`)
       res.redirect("/");
     }
   });
-
 }
 
 // Affichage de la page Link
