@@ -295,35 +295,11 @@ app.get("/refresh_token", function (req, res) {
 
 
 
-
-// // // NEW TEST TOP ARTISTS
-// app.get('/getTopArtist', async (req, res) => {
-//   const token = req.session.token
-// console.log("token pour topartists", token);
-// const result =  await topArtist(token)
-// })
-
-
-
-// const topArtist = async (token) => {
-//   // console.log("token bbbbbbbbbbbbbbbbbb", token);
-//   const result = await fetch(`https://api.spotify.com/v1/me/top/artists`, {
-//     method: 'GET',
-//     headers: {
-//       'Content-Type': 'application/json',
-//       'Authorization': token,
-//       // 'scopes': "user-top-read"
-//     },
-//   })
-//   console.log("resultat", result);
-//   const datas = await result.json()
-//   return datas
-// }
-
+// GetTopArtists default:medium_range == 6 Months
 app.get('/getTopArtist', async (req, res) => {
   const token = req.session.token
 
-  const result = await fetch(`https://api.spotify.com/v1/me/top/artists`, {
+  const result = await fetch(`https://api.spotify.com/v1/me/top/artists?time_range=medium_term&limit=10`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -331,8 +307,11 @@ app.get('/getTopArtist', async (req, res) => {
       // 'scopes': "user-top-read"
     },
   })
-  console.log("resultat", result);
+  // console.log("resultat", result);
+  
   const datas = await result.json()
+  const infoUser = datas.items[1].name
+  console.log("infos artists", infoUser);
   res.status(200).send({datas:datas})
 })
 
