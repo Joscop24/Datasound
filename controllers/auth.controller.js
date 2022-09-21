@@ -2,6 +2,7 @@
 /*
     Auth Controlleur
 */
+// Import des Modules
 require('dotenv').config()
 const bcrypt = require("bcrypt");
 const bcrypt_salt = 10;
@@ -55,28 +56,59 @@ exports.getConnexionUser = (req, res) => {
   );
 }
 
-/*
+// LostPassword + SendMail // Mot de passe Oublié + Envoi du Mail
 exports.lostPassword = async (req, res) => {
   const { resetmail } = req.body
-  const user = await db.query(`SELECT id, email from user WHERE email="${resetmail}"`)
+  const [user] = await db.query(`SELECT id, username FROM user WHERE email="${resetmail}"`)
 
-  var host = req.get('host')
-  console.log('host', host)
+  // console.log("info sur l'utilisateur", user);
+  req.session.user = user
 
-  var linkmail = ""
+  try {
+
+    const data = transporter.sendMail({
+      from: '"Datasound" <jorisbourdin.pro@gmail.com>',
+      to: resetmail,
+      subject: `Mot de passe oublié Datasound`,
+      html: `
+                  <h2> Bonjour, </h2>
+                  <h5>Veuillez cliquer sur le lien ci-dessous afin de modifier votre mot de passe</h5><br>
+                  <a href='http://localhost:3000/resetpassword'> Cliquez ici </a>
+              `
+    });
+    transporter.close()
+
+    console.log("Email de confirmation de compte est bien envoyé !!", data)
+    console.log("1er token", token);
+    res.redirect('/');
+  } catch (error) {
+    console.log("error", error)
+    res.redirect('/')
+  }
+
 }
-*/
+// Reset Password // Réinitialisation du Mot de Passe
+exports.getPageResetPassword = (req, res) => {
+  res.render("resetpassword");
+}
 
+exports.resetPassword = async (req, res) => {
+  const { password, confirmpassword } = req.body;
+  const { user } = req.session
+  console.log("voir info user", user);
+
+  if (password === confirmpassword) 
+    await db.query(`UPDATE user SET password="${await bcrypt.hash(password, bcrypt_salt)}" WHERE id=${req.session.user.id}`)
+  
+  console.log("LA MODIFICATION EST EFFECTUE");
+  res.redirect('/');
+}
 
 // Inscription du User
 exports.getInscriptionUser = async (req, res) => {
   const { name, surname, username, email, password, confirmpassword } = req.body;
 
   if (password === confirmpassword) {
-    // bcrypt.hash(password, bcrypt_salt, function (err, hash) {
-    //   db.query(`INSERT INTO user SET name="${name}", surname="${surname}", username="${username}", email="${email}" , password="${hash}", isAdmin="0", isBan="0", isVerified="0";`)
-    // });
-    // req.session.user.id = 
 
     const newUser = await db.query(`INSERT INTO user SET name="${name}", surname="${surname}", username="${username}", email="${email}" , password="${await bcrypt.hash(password, bcrypt_salt)}", isAdmin="0", isBan="0", isVerified="0";`)
     const [user] = await db.query(`SELECT * FROM user WHERE id = ${newUser.insertId}`)
@@ -99,8 +131,19 @@ exports.getInscriptionUser = async (req, res) => {
                     <h5>Pour activer votre compte utilisateur, veuillez cliquer sur le lien ci-dessous </h5><br>
                     http://localhost:3000/verification/${token}
                 `
+      }, function (err, data) {
+        if (err) {
+          console.log("Une erreur est survenue", err)
+        } else {
+          console.log("Email bien envoyé !!", data)
+          res.redirect("back")
+        }
       })
+      
 
+      
+
+      transporter.close()
       console.log("Email de confirmation de compte est bien envoyé !!", data)
       console.log("1er token", token);
       res.redirect('/');
@@ -114,6 +157,7 @@ exports.getInscriptionUser = async (req, res) => {
   }
 }
 
+//
 exports.getPageVerification = (req, res) => {
   const { token } = req.session
   console.log("voici le token", token);
@@ -126,7 +170,7 @@ exports.getPageVerification = (req, res) => {
     }
     else {
       const [user] = await db.query(`SELECT * FROM user WHERE id="${decoded.user.id}"`)
-    
+
       if (!user) {
         console.log("pb user");
         res.redirect("/")

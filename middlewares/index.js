@@ -22,12 +22,12 @@ exports.login = async (req, res, next) => {
     */
    next()
 }
-/*
-exports.mdpForgot = async (req,res, next) => {
+
+exports.mdpForgot = async (req, res, next) => {
     console.log("mdp oublie");
     next()
 }
-*/
+
 
 // Inscription
 exports.inscription = (req, res, next) => {

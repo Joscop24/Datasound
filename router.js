@@ -8,7 +8,7 @@ const upload = require('./utils/multer')
 
 // Import controllers
 const { getPageHome } = require('./controllers/home.controllers')
-const { getPageAuth, getPageLink, getConnexionUser, getInscriptionUser,getPageVerification, lostPassword } = require('./controllers/auth.controller')
+const { getPageAuth, getPageLink, getConnexionUser, getInscriptionUser,getPageVerification, lostPassword, getPageResetPassword, resetPassword } = require('./controllers/auth.controller')
 const { getPageProfil, getEditProfil, putUpdateProfil } = require('./controllers/user.controlllers')
 const { getPageAdmin, banUser } = require('./controllers/admin.controller')
 const { getPageForum, editComment, getCommentId, deleteComment, sendComment, getPing } = require('./controllers/forum.controller')
@@ -21,7 +21,7 @@ const { test_md, connexion, link,
     login, inscription, profil,
     editprofil, updateProfil, imAdmin,
     ban, forum, modifComment,
-    suppComment, nodemailer, envoiComment } = require('./middlewares/index')
+    suppComment, nodemailer, envoiComment, mdpForgot } = require('./middlewares/index')
 
 
 /*
@@ -42,11 +42,21 @@ router.route('/connexion')
     .get(connexion, getPageAuth)
 
 // lostPassword
-/*
 router.route('/lostpassword')
     .post(mdpForgot, lostPassword)
-    */
-// Login
+
+// Page ResetPassword
+router.route('/resetPassword')
+    .get(getPageResetPassword)
+    .put(resetPassword)
+
+// Reset Password
+// router.route('resetpassword/:id')
+//  .put(resetPassword)
+
+
+
+    // Login
 router.route('/login')
     .post(login, getConnexionUser)
 // Inscription
