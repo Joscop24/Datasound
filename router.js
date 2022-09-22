@@ -86,7 +86,8 @@ router.route('/update/:id')
 // Admin Controlleur
 */
 router.route('/admin')
-    .get(imAdmin, getPageAdmin)
+    .get(getPageAdmin)
+    // imAdmin
 // Supprimer les utilisateurs => à modifier pour leur empecher de se connecter
 router.route('/user/:id')
     .delete(ban, banUser)

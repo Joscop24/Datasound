@@ -107,6 +107,10 @@ body {
     margin-top: 210px;
 }
 
+.ml-200{
+    margin-left: 200px;
+}
+
 
 /* Color Custom + Color Spotify */
 .text-custom {
@@ -208,9 +212,8 @@ body {
 
     .resp-home {
         display: flex;
-        /* flex-direction: column; */
         justify-content: center;
-        align-items: center;
+        /* align-items: center; */
     }
 
     .mt-200 {
@@ -221,9 +224,14 @@ body {
         margin-top: 170px;
     }
 
-    .font-12 {
-        size: 12px;
+    .ml-200{
+        margin-left: 50px;
+        font-size: 10px;
     }
+
+    /* .font-12 {
+        size: 12px;
+    } */
 
     .mt-resp-50 {
         margin-top: 50px;

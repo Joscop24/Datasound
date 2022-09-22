@@ -5,7 +5,11 @@ Partial: Header
 <div class="text-light text-center mt-5">
   <h2 class="text-custom fs-1">C'est le moment</h2>
   <h3>Découvre toutes les informations sur ton profil</h3>
+  {{#if user}}
+  <a href="/profil"><button type="button" class="btn btn-outline-light mt-2 fs-5">Regarde tes Statistiques</button></a>
+  {{else}}
   <a href="/connexion"><button type="button" class="btn btn-outline-light mt-2 fs-5">Login / Register</button></a>
+  {{/if}}
 </div>
 
 <div class="text-center mt-5">
@@ -21,9 +25,9 @@ Partial: Header
 
 
 <div class="container-fluid mt-200">
-  <div class="row resp-home">
-    <div class="col-8">
-      <ul class="font-12 fs-3 none-list">
+  <div class="row ">
+    <div class="col-8 resp-home">
+      <ul class="font-12 fs-3 none-list ml-200">
         <li>Disponible toute l'année</li>
         <li>Ou et quand tu veux</li>
         <li> Partagez-le avec n'importe qui</li>

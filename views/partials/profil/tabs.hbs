@@ -100,6 +100,7 @@ Partial : Stats Top Artists / Songs
                 </div>
 
                 {{!-- -------------- Avatar -------------- --}}
+                {{#if db}}
                 <div class="col mt-5 text-center">
                     <div class="container ">
                         <div class="row mt-resp-20">
@@ -107,7 +108,7 @@ Partial : Stats Top Artists / Songs
                             {{!-- 3eme Place --}}
                             <div class="avatar-group rel col d-flex align-items-center ">
                                 <div class="avatar">
-                                    <img src="./assets/images/dubai.jpg" alt="Avatar"
+                                    {{!-- <img src={{this.datas6M.items[0].images[1].url}} alt="Avatar" --}}
                                         class="rounded-circle img-top-artists abs-7">
                                 </div>
                                 {{!-- 2eme Place --}}
@@ -123,6 +124,7 @@ Partial : Stats Top Artists / Songs
                             </div>
                         </div>
                     </div>
+                    {{/if}}
                 </div>
             </div>
         </div>
@@ -133,14 +135,15 @@ Partial : Stats Top Artists / Songs
         {{!-- -------------- Classement -------------- --}}
         <div class="container mt-5">
             <div class="row">
+                {{#if db}}
                 <div class="col">
                     <h5 class="fs-2">Top Artists</h5>
                     <button class="btn btn-outline-light rounded-4 mt-3 fs-5 "><i class="fa-solid fa-share-nodes "></i>
                         Share</button>
                     <div class="mt-300">
                         <ul class="mt-3 fs-4" style="list-style-type: decimal">
-                            <li>Josman</li>
-                            <li>Kekra</li>
+                            {{!-- <li>{{this.item.name}}</li> --}}
+                            <li>MICHELE</li>
                             <li>Damso</li>
                             <li>Prime</li>
                             <li></li>
@@ -153,6 +156,7 @@ Partial : Stats Top Artists / Songs
                     </div>
                     <h5 class="text-custom mb-5">See More</h5>
                 </div>
+                {{/if}}
 
                 {{!-- -------------- Avatar -------------- --}}
                 <div class="avatar-group rel col d-flex align-items-center ">

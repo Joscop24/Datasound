@@ -242,16 +242,17 @@ app.get("/callback", function (req, res) {
           headers: { Authorization: "Bearer " + access_token },
           json: true,
         };
-        const data = await request.get(
-          options,
-          function (error, response, body) {
+        const data = await request.get( options, function (error, response, body) {
+          res.status(200).send({datas:body})
             console.log("Voici les infos sur mon compte Spotify", body);
             console.log("voici les infos concernant le token", options);
           }
         );
         req.session.token = data.headers.Authorization
-        res.render("profil", {data: data });
-        
+        // res.render("profil", { data: data });
+
+
+
       } else {
         res.redirect(
           "/#" +
@@ -298,48 +299,56 @@ app.get("/refresh_token", function (req, res) {
 // GetTopArtists default:medium_range == 6 Months
 app.get('/getTopArtist', async (req, res) => {
   const token = req.session.token
+ 
+
 
   const result = await fetch(`https://api.spotify.com/v1/me/top/artists?time_range=medium_term&limit=10`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
       'Authorization': token,
-      // 'scopes': "user-top-read"
     },
   })
   // console.log("resultat", result);
-  
-  const datas = await result.json()
-  const infoUser = datas.items[1].name
-  console.log("infos artists", infoUser);
-  res.status(200).send({datas:datas})
+
+  const datas6M = await result.json()
+
+  console.log(datas6M.items[0].name);
+  console.log("vla le lien d'un image", datas6M.items[0].images[1].url);
+
+  // datas6M.items.map((item, index) => {
+  //   console.log(item.name, index);
+  // })
+  // res.status(200).send({datas:datas6M})
+  // // console.log(datas6M);
+  // res.render("profil", {
+  //   db: datas6M
+  // })
 })
 
-//const data = request.get(options)
-// console.log('request n°2', data)
+  
 
 
-
-// END SPOTIFY*
+  // END SPOTIFY*
 
 
 
 
-// /Forum
-// reply to comment // Répondre au commentaire
-// a faire plus tard
+  // /Forum
+  // reply to comment // Répondre au commentaire
+  // a faire plus tard
 
-/* ERROR 404 */
-// A Mettre a la fin
-app.get("/*", function (req, res) {
-  res.render("error404", {
-    user: true,
+  /* ERROR 404 */
+  // A Mettre a la fin
+  app.get("/*", function (req, res) {
+    res.render("error404", {
+      user: true,
+    });
   });
-});
 
-app.listen(port, () =>
-  console.log(`Joris : lancement du site sur le port ${port} !`)
-);
+  app.listen(port, () =>
+    console.log(`Joris : lancement du site sur le port ${port} !`)
+  );
 
-// exports pour chai
-module.exports = { db, app };
+  // exports pour chai
+  module.exports = { db, app };
