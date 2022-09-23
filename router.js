@@ -13,6 +13,8 @@ const { getPageProfil, getEditProfil, putUpdateProfil } = require('./controllers
 const { getPageAdmin, banUser } = require('./controllers/admin.controller')
 const { getPageForum, editComment, getCommentId, deleteComment, sendComment, getPing } = require('./controllers/forum.controller')
 const { envoiMail } = require('./controllers/nodemailer.controller')
+const { getTopArtist } = require("./utils/spotify")
+const { getLoginSpotify, callback} = require("./controllers/spotify.controller")
 // const { commentary } = require ('./utils/multer')
 
 
@@ -50,9 +52,6 @@ router.route('/resetPassword')
     .get(getPageResetPassword)
     .put(resetPassword)
 
-// Reset Password
-// router.route('resetpassword/:id')
-//  .put(resetPassword)
 
 
 
@@ -72,6 +71,17 @@ router.route("/verification/:token")
 // Link (Spotify)
 router.route('/link')
     .get(link, getPageLink)
+
+router.route('/login_spotify')
+    .get(getLoginSpotify)
+
+// router.route('callback')
+//     .get(getCallBack)
+
+router.route("/getTopArtist")
+    .get(getTopArtist)
+    .get(callback)
+
 // Page Profil (stats spotify)
 router.route('/profil')
     .get(profil, getPageProfil)

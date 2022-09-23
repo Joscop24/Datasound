@@ -48,20 +48,14 @@ const port = 3000;
 const { DB_DATABASE, DB_HOST, DB_PASSWORD, DB_USER, PORT_NODE } = process.env;
 
 
-
-/*
- * Configuration Handlebars
- ***************************/
-
 //Import des helpers
-const { limit, ifImgExist } = require("./helper");
+const { limit, ifImgExist, orderImage } = require("./helper");
 
 app.engine(
   ".hbs",
   engine({
     helpers: {
-      limit,
-      ifImgExist,
+      limit, ifImgExist, orderImage
     },
     extname: "hbs",
     defaultLayout: "main",
@@ -152,14 +146,14 @@ app.post("/logout", (req, res) => {
 
 
 
-
+/*
 // SPOTIFY
 
 /**
  * Generates a random string containing numbers and letters
  * @param  {number} length The length of the string
  * @return {string} The generated string
- */
+
 var generateRandomString = function (length) {
   var text = "";
   var possible =
@@ -242,14 +236,14 @@ app.get("/callback", function (req, res) {
           headers: { Authorization: "Bearer " + access_token },
           json: true,
         };
-        const data = await request.get( options, function (error, response, body) {
-          res.status(200).send({datas:body})
-            console.log("Voici les infos sur mon compte Spotify", body);
-            console.log("voici les infos concernant le token", options);
-          }
+        const data = await request.get(options, function (error, response, body) {
+          // res.status(200).send({datas:body})
+          console.log("Voici les infos sur mon compte Spotify", body);
+          console.log("voici les infos concernant le token", options);
+        }
         );
         req.session.token = data.headers.Authorization
-        // res.render("profil", { data: data });
+        res.render("profil", { data: data });
 
 
 
@@ -293,62 +287,67 @@ app.get("/refresh_token", function (req, res) {
     }
   });
 });
-
+*/
 
 
 // GetTopArtists default:medium_range == 6 Months
-app.get('/getTopArtist', async (req, res) => {
-  const token = req.session.token
- 
+// app.get('/getTopArtist', async (req, res) => {
+//   const token = req.session.token
+//   const result = await fetch(`https://api.spotify.com/v1/me/top/artists?time_range=medium_term&limit=10`, {
+//     method: 'GET',
+//     headers: {
+//       'Content-Type': 'application/json',
+//       'Authorization': token,
+//     },
+//   })
+//   // console.log("resultat", result);
+
+//   const datas6M = await result.json()
+//   let topArray = []
+//   console.log(datas6M.items);
+//   // console.log("vla le lien d'un image", datas6M.items[0].images[1].url);
+
+//   datas6M.items.map((itm, i) => {
+//     console.log('loop', i)
+//     if (i <= 2) topArray.push({
+//       ...itm,
+//       images: itm.images[0]
+//     })
+//   })
+//   // datas6M.items.map((item, index) => {
+//   //   console.log(item.name, index);
+//   // })
+//   // res.status(200).send({datas:datas6M})
+//   console.log('ICICI', topArray);
+//   res.render("profil", {
+//     db: datas6M,
+//     topArray
+//   })
+// })
 
 
-  const result = await fetch(`https://api.spotify.com/v1/me/top/artists?time_range=medium_term&limit=10`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': token,
-    },
-  })
-  // console.log("resultat", result);
-
-  const datas6M = await result.json()
-
-  console.log(datas6M.items[0].name);
-  console.log("vla le lien d'un image", datas6M.items[0].images[1].url);
-
-  // datas6M.items.map((item, index) => {
-  //   console.log(item.name, index);
-  // })
-  // res.status(200).send({datas:datas6M})
-  // // console.log(datas6M);
-  // res.render("profil", {
-  //   db: datas6M
-  // })
-})
-
-  
 
 
-  // END SPOTIFY*
+// END SPOTIFY*
 
 
 
 
-  // /Forum
-  // reply to comment // Répondre au commentaire
-  // a faire plus tard
+// /Forum
+// reply to comment // Répondre au commentaire
+// a faire plus tard
 
-  /* ERROR 404 */
-  // A Mettre a la fin
-  app.get("/*", function (req, res) {
-    res.render("error404", {
-      user: true,
-    });
+/* ERROR 404 */
+// A Mettre a la fin
+app.get("/*", function (req, res) {
+  res.render("error404", {
+    user: true,
   });
+});
 
-  app.listen(port, () =>
-    console.log(`Joris : lancement du site sur le port ${port} !`)
-  );
+app.listen(port, () =>
+  console.log(`Joris : lancement du site sur le port ${port} !`)
+);
 
-  // exports pour chai
-  module.exports = { db, app };
+// exports pour chai
+module.exports = { db, app };

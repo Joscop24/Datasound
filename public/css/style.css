@@ -57,36 +57,6 @@ body {
 
 
 /* PARTIE PROFIL */
-/* IMAGES ABSOLU POUR TOP ARTISTS */
-.abs-4 {
-    position: absolute;
-    right: 300px;
-}
-
-.abs-5 {
-    position: absolute;
-    right: 0px;
-}
-
-.abs-6 {
-    position: absolute;
-    right: 150px;
-}
-
-.abs-7 {
-    position: absolute;
-    right: 300px;
-}
-
-.abs-8 {
-    position: absolute;
-    right: 0px;
-}
-
-.abs-9 {
-    position: absolute;
-    right: 150px;
-}
 
 /* SIZE IMAGES*/
 .img-top-artists {
@@ -266,37 +236,7 @@ body {
         justify-content: center;
     }
 
-    /* PARTIE PROFIL RESPONSIVE */
-    /* IMAGES ABSOLU POUR TOP ARTISTS */
-    .abs-4 {
-        position: absolute;
-        right: 190px;
-    }
-
-    .abs-5 {
-        position: absolute;
-        right: 30px;
-    }
-
-    .abs-6 {
-        position: absolute;
-        right: 110px;
-    }
-
-    .abs-7 {
-        position: absolute;
-        right: 170px;
-    }
-
-    .abs-8 {
-        position: absolute;
-        right: 10px;
-    }
-
-    .abs-9 {
-        position: absolute;
-        right: 90px;
-    }
+   
 
     /* SIZE IMAGES*/
     .img-top-artists {
