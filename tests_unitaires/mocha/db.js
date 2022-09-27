@@ -3,20 +3,19 @@ require("dotenv").config();
 const assert = require('assert');
 const { db } = require("../../server")
 
-// const { DB_DATABASE, DB_HOST, DB_PASSWORD, DB_USER, PORT_NODE } = process.env;
+/*
+const { DB_DATABASE, DB_HOST, DB_PASSWORD, DB_USER, PORT_NODE } = process.env;
+// Config DB
+let configDB = {
+    host: DB_HOST,
+    user: DB_USER,
+    password: DB_PASSWORD,
+    database: DB_DATABASE,
+  };
+*/
 
-
-// // Config DB
-// let configDB = {
-//     host: DB_HOST,
-//     user: DB_USER,
-//     password: DB_PASSWORD,
-//     database: DB_DATABASE,
-//   };
-
-// // Création de la connection avec les paramètres donner
-// let db = mysql.createConnection(configDB);
-
+// Création de la connection avec les paramètres donner
+//let db = mysql.createConnection(configDB);
 
 describe('CRUD LOGIN', () => {
 
@@ -38,7 +37,6 @@ describe('CRUD LOGIN', () => {
             await db.query(`DELETE FROM comments WHERE id_comments = ${newComment.id_comments}`)
             console.log("COMMENTAIRE DELETE")
         })*/
-
 
     it("Get ALL Commentaire", async () => {
         let data = await db.query(`Select * from comments`)

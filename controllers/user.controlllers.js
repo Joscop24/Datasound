@@ -8,20 +8,20 @@ const bcrypt_salt = 10;
 // Affichage Page Profil
 exports.getPageProfil = (req, res) => {
   console.log("c'est moi ", req.query.q);
-  switch (req.query.q) {
-    case '4w':
-      return res.render("profil");
-      break;
-    case '6m':
-      return res.render("profil");
-      break;
-    case 'all':
-      return res.render("profil");
-      break;
-    default:
-      return res.render("profil");
-      break
-  }
+  // switch (req.query.q) {
+  //   case '4w':
+  //     return res.render("profil");
+  //     break;
+  //   case '6m':
+  //     return res.render("profil");
+  //     break;
+  //   case 'all':
+  //     return res.render("profil");
+  //     break;
+  //   default:
+  //     return res.render("profil");
+  //     break
+  // }
 
 }
 
