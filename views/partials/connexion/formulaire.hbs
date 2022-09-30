@@ -104,28 +104,30 @@ Partial : Formulaire de Connexion / D'inscription
                 {{#if flash2}}
                 <h3 style="color:white" class="text-center">{{this.flash2}}</h3>
                 {{/if}}
-                <div class="row d-flex justify-content-center">
+                {{!-- <div class="row"> --}}
+                    <div class="col-md-12">
+
                     <form action="/register" method="post">
                         <!-- 1ere case -->
-                        <div class="col-8 ">
-                            <div class="row d-flex justify-content-center">
-                                <div class="col-4">
+                        <div class="col-md-12">
+                            <div class="col-md-12 row">
+                                <div class="d-flex justify-content-center ">
                                     <!-- Input + textarea Nom -->
-                                    <div class="">
+                                    <div class="me-4">
                                         <label for="exampleFormControlInput1" class="form-label text-white">Nom</label>
                                         <input type="text" class="form-control" id="name" name="name">
                                     </div>
-                                </div>
-                                <!-- Input + textarea Prenom -->
-                                <div class="col-4">
-                                    <div class="">
+
+                                    <!-- Input + textarea Prenom -->
+
+                                    <div class="ms-4">
                                         <label for="exampleFormControlInput1"
                                             class="form-label text-white">Prenom</label>
                                         <input type="text" class="form-control" id="surname" name="surname">
                                     </div>
                                 </div>
                             </div>
-                            <div class="d-flex flex-wrap justify-content-center">
+                            <div class="row d-flex justify-content-center">
                                 <!-- Input + textarea Email -->
                                 <div class="col-7 mt-3">
                                     <label for="exampleFormControlInput1" class="form-label text-white">
@@ -157,7 +159,9 @@ Partial : Formulaire de Connexion / D'inscription
                             </div>
                         </div>
                     </form>
-                </div>
+                    </div>
+                    {{!--
+                </div> --}}
             </div>
         </div>
     </div>

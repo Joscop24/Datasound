@@ -9,7 +9,7 @@ const storage = multer.diskStorage({
     },
     // Ici est définit le format du nom de l'image à stocker
     filename: (req, file, cb) => {
-        console.log('config multer', file, file.originalname.split('.')[0].toLowerCase())
+        // console.log('config multer', file, file.originalname.split('.')[0].toLowerCase())
         const ext = file.originalname.slice(-3),
 
         completed = file.originalname.split('.')[0].toLowerCase() + "_" + Date.now() + '.' + ext;        

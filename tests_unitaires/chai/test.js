@@ -33,7 +33,7 @@ describe('CHAI // CONTROLLER // COMMENTS', () => {
             .request(app)
             .post("/login")
             .set("Accept", "application/json")
-            .send({ email: "Joris@gmail.com", password: "Jos24" })
+            .send({ email: "jorisbourdin.pro@gmail.com", password: "Jos24" })
             .end((err, res) => {
                 cookieSess = res.res.headers['set-cookie'][0].split(';')[0]
                 if (err) return done(err);
@@ -59,21 +59,6 @@ describe('CHAI // CONTROLLER // COMMENTS', () => {
 
     });
 
-    // // GET ID
-    it('CHAI // GET ID // COMMENTS', (done) => {
-        chai
-            .request(app)
-            .get(`/comments/${id.insertId}`)
-            .set("Cookie", cookieSess)
-            .end((err, res) => {
-                if (err) return done(err),
-
-                    res.body.data.should.be.a('array');
-                res.should.have.status(200)
-                done()
-            })
-    });
-
     // Post
     it('CHAI // POST // COMMENTS', (done) => {
         chai
@@ -94,6 +79,23 @@ describe('CHAI // CONTROLLER // COMMENTS', () => {
                 done()
             })
     });
+
+    // // GET ID
+    it('CHAI // GET ID // COMMENTS', (done) => {
+        chai
+            .request(app)
+            .get(`/comments/${id.insertId}`)
+            .set("Cookie", cookieSess)
+            .end((err, res) => {
+                if (err) return done(err),
+
+                    res.body.data.should.be.a('array');
+                res.should.have.status(200)
+                done()
+            })
+    });
+
+
 
 
 

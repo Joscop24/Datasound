@@ -52,16 +52,14 @@ router.route('/resetPassword')
     .get(getPageResetPassword)
     .put(resetPassword)
 
-
-
-
     // Login
 router.route('/login')
     .post(login, getConnexionUser)
+
 // Inscription
 router.route('/register')
     .post(inscription, getInscriptionUser)
-
+// Activation / Verification
 router.route("/verification/:token")
     .get(getPageVerification)
 
@@ -77,11 +75,11 @@ router.route('/login_spotify')
 
 // router.route('callback')
 //     .get(getCallBack)
-
+/*
 router.route("/getTopArtist")
     .get(getTopArtist)
     .get(callback)
-
+*/
 // Page Profil (stats spotify)
 router.route('/profil')
     .get(profil, getPageProfil)

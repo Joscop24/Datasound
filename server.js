@@ -317,7 +317,7 @@ app.get('/getTopArtist', async (req, res) => {
   // datas6M.items.map((item, index) => {
   //   console.log(item.name, index);
   // })
-  // res.status(200).send({datas:datas6M})
+  res.status(200).send({datas:datas6M})
   console.log('ICICI', topArray);
   res.render("profil", {
     db: datas6M,

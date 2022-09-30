@@ -97,9 +97,9 @@ exports.resetPassword = async (req, res) => {
   const { user } = req.session
   console.log("voir info user", user);
 
-  if (password === confirmpassword) 
+  if (password === confirmpassword)
     await db.query(`UPDATE user SET password="${await bcrypt.hash(password, bcrypt_salt)}" WHERE id=${req.session.user.id}`)
-  
+
   console.log("LA MODIFICATION EST EFFECTUE");
   res.redirect('/');
 }
@@ -110,26 +110,25 @@ exports.getInscriptionUser = async (req, res) => {
 
   if (password === confirmpassword) {
 
-    const newUser = await db.query(`INSERT INTO user SET name="${name}", surname="${surname}", username="${username}", email="${email}" , password="${await bcrypt.hash(password, bcrypt_salt)}", isAdmin="0", isBan="0", isVerified="0";`)
+    const newUser = await db.query(`INSERT INTO user SET name="${name}", surname="${surname}", username="${username}", email="${email}" , 
+    password="${await bcrypt.hash(password, bcrypt_salt)}", isAdmin="0", isBan="0", isVerified="0";`)
     const [user] = await db.query(`SELECT * FROM user WHERE id = ${newUser.insertId}`)
 
     const token = jwt.sign({ user }, "SecretKey");
 
-    // req.session.user = user
     req.session.token = token
 
     // GESTION ENVOI POUR CONFIRMER LE MAIL
 
     try {
-
       const data = transporter.sendMail({
         from: '"Datasound" <jorisbourdin.pro@gmail.com>',
         to: email,
         subject: `Confirmation du compte Datasound`,
         html: `
                     <h2> Bonjour, </h2>
-                    <h5>Pour activer votre compte utilisateur, veuillez cliquer sur le lien ci-dessous </h5><br>
-                    http://localhost:3000/verification/${token}
+                    <h3>Pour activer votre compte utilisateur,</h3><br>
+                    <a href='http://localhost:3000/verification/${token}'> Cliquez ici </a>
                 `
       }, function (err, data) {
         if (err) {
@@ -139,13 +138,8 @@ exports.getInscriptionUser = async (req, res) => {
           res.redirect("back")
         }
       })
-      
-
-      
-
       transporter.close()
       console.log("Email de confirmation de compte est bien envoyé !!", data)
-      console.log("1er token", token);
       res.redirect('/');
     } catch (error) {
       console.log("error", error)
