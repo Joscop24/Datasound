@@ -19,10 +19,10 @@ exports.getPageProfil = (req, res) => {
   //     return res.render("profil");
   //     break;
   //   default:
-  //     return res.render("profil");
   //     break
   // }
-
+  
+      return res.render("profil");
 }
 
 // Page Edit-Profil
