@@ -22,8 +22,8 @@ Partial : Stats Top Artists / Songs
     </li>
     <li class="nav-item" role="presentation">
         <form action="/getTopArtists?all">
-        <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact"
-            type="button" role="tab" aria-controls="pills-contact" aria-selected="false">All Time</button>
+            <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact"
+                type="button" role="tab" aria-controls="pills-contact" aria-selected="false">All Time</button>
         </form>
     </li>
 </ul>
@@ -36,22 +36,16 @@ Partial : Stats Top Artists / Songs
         {{!-- -------------- Classement -------------- --}}
         <div class="container mt-5 ">
             <div class="row ">
+                {{#if db}}
                 <div class="col">
                     <h5 class="fs-2 ">Top Artists</h5>
                     <button class="btn btn-outline-light rounded-4 mt-3 fs-5 "><i class="fa-solid fa-share-nodes "></i>
                         Share</button>
                     <div class="mt-300">
                         <ul class="mt-3 fs-4 " style="list-style-type: decimal">
-                            <li>Damso</li>
-                            <li>Josman</li>
-                            <li>Kekra</li>
-                            <li>Prime</li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
+                            {{#each db.items}}
+                            <li> {{ this.name }} </li>
+                            {{/each }}
                         </ul>
                     </div>
                     <h5 class="text-custom mb-5">See More</h5>
@@ -59,25 +53,20 @@ Partial : Stats Top Artists / Songs
 
                 {{!-- -------------- Avatar -------------- --}}
                 <div class="avatar-group rel col d-flex align-items-center ">
-                    {{!-- 3eme Place --}}
-                    <div class="avatar">
-                        <img src="./assets/images/kekra.jpeg" alt="Avatar" class="rounded-circle img-top-artists abs-4">
+                    {{#each topArrayArtists4W }}
+                    <div class="avatar order-{{ orderImage @index }} mt-5">
+                        <img src="{{ this.images.url }}" alt="Avatar" class="rounded-circle img-top-artists">
                     </div>
-                    {{!-- 2eme Place --}}
-                    <div class="avatar">
-                        <img src="./assets/images/jos.jpg" alt="Avatar" class="rounded-circle img-top-artists abs-5">
-                    </div>
-                    {{!-- 1ere Place --}}
-                    <div class="avatar">
-                        <img src="./assets/images/damso.jpg" alt="Avatar" class="rounded-circle img-top-artists abs-6">
-                    </div>
+                    {{/each }}
                 </div>
+                {{/if}}
             </div>
         </div>
 
         {{!-- -------------------- Top Songs ----------------------------- --}}
         <div class="container mt-5 ">
             <div class="row">
+                {{#if db}}
                 <div class="col">
                     <h5 class="fs-2">Top Songs</h5>
                     <div class="d-flex">
@@ -91,48 +80,33 @@ Partial : Stats Top Artists / Songs
                     </div>
                     <div class="mt-300">
                         <ul class="mt-3 fs-4" style="list-style-type: decimal">
-                            <li>Fais moi un vie</li>
-                            <li>Iverson</li>
-                            <li>Dubai</li>
-                            <li>Stuntmen</li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
+                            {{#each db.items}}
+                            <li> {{ this.name }} </li>
+                            {{/each }}
                         </ul>
                     </div>
                     <h5 class="text-custom">See More</h5>
                 </div>
 
                 {{!-- -------------- Avatar -------------- --}}
-                {{#if db}}
                 <div class="col mt-5 text-center">
                     <div class="container ">
                         <div class="row mt-resp-20">
 
                             {{!-- 3eme Place --}}
                             <div class="avatar-group rel col d-flex align-items-center ">
-                                <div class="avatar">
-                                    {{!-- <img src={{this.datas6M.items[0].images[1].url}} alt="Avatar" --}} {{!--
-                                        class="rounded-circle img-top-artists abs-7"> --}}
+                                {{#each topArrayTracks4W }}
+                                <div class="avatar order-{{ orderImage @index }} mt-5">
+                                    <img src="{{ this.images.url }}" alt="Avatar"
+                                        class="rounded-circle img-top-artists">
                                 </div>
-                                {{!-- 2eme Place --}}
-                                <div class="avatar">
-                                    <img src="./assets/images/ehdmra.jpg" alt="Avatar"
-                                        class="rounded-circle img-top-artists abs-8">
-                                </div>
-                                {{!-- 1ere Place --}}
-                                <div class="avatar">
-                                    <img src="./assets/images/fais-moi-un-vie-damso.jpg" alt="Avatar"
-                                        class="rounded-circle img-top-artists abs-9">
-                                </div>
+                                {{/each }}
                             </div>
                         </div>
                     </div>
-                    {{/if}}
+
                 </div>
+                {{/if}}
             </div>
         </div>
 
@@ -170,19 +144,19 @@ Partial : Stats Top Artists / Songs
                         <img src="{{ this.images.url }}" alt="Avatar" class="rounded-circle img-top-artists">
                     </div>
                     {{/each }}
-                    {{!-- 
-                      Place 
-                     <div class="avatar">
+                    {{!--
+                    Place
+                    <div class="avatar">
                         <img src="{{ db.items[0].images[0].url }}" alt="Avatar"
                             class="rounded-circle img-top-artists abs-4">
-                    </div> 
-                     2eme Place 
+                    </div>
+                    2eme Place
 
-                     1ere Place 
-                     <div class="avatar">
+                    1ere Place
+                    <div class="avatar">
                         <img src="./assets/images/jos.jpg" alt="Avatar" class="rounded-circle img-top-artists abs-6">
-                    </div> 
-                     --}}
+                    </div>
+                    --}}
                 </div>
                 {{/if}}
             </div>
@@ -190,7 +164,7 @@ Partial : Stats Top Artists / Songs
 
         {{!-- -------------------- Top Songs ----------------------------- --}}
         <div class="container mt-5 ">
-            {{#if db2}}
+            {{#if db}}
             <div class="row">
                 <div class="col">
                     <h5 class="fs-2">Top Songs</h5>
@@ -204,7 +178,7 @@ Partial : Stats Top Artists / Songs
                     </div>
                     <div class="mt-300">
                         <ul class="mt-3 fs-4" style="list-style-type: decimal">
-                            {{#each db2.items}}
+                            {{#each db.items}}
                             <li>{{this.name}}</li>
                             {{/each }}
                         </ul>

@@ -154,6 +154,7 @@ app.post("/logout", (req, res) => {
  * @param  {number} length The length of the string
  * @return {string} The generated string
 */
+/*
 var generateRandomString = function (length) {
   var text = "";
   var possible =
@@ -288,8 +289,8 @@ app.get("/refresh_token", function (req, res) {
   });
 });
 
-
-
+*/
+/*
 // GetTopArtists default:medium_range == 6 Months
 app.get('/getTopArtist', async (req, res) => {
   const token = req.session.token
@@ -352,7 +353,7 @@ app.get('/getTopTracks', async (req,res) => {
   })
   
 })
-
+*/
 
 
 
