@@ -75,11 +75,12 @@ router.route('/login_spotify')
 
 // router.route('callback')
 //     .get(getCallBack)
-/*
+
 router.route("/getTopArtist")
     .get(getTopArtist)
+    .get(getTopTracks)
     .get(callback)
-*/
+
 // Page Profil (stats spotify)
 router.route('/profil')
     .get(profil, getPageProfil)

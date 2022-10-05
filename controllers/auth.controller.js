@@ -48,7 +48,7 @@ exports.getConnexionUser = (req, res) => {
           if (MODE === 'test')
             return res.json({ flash: "Vous êtes connecter !" })
           else
-            return res.render("link")
+            return res.redirect("/link")
 
         } else return res.render("connexion", { flash: "L'email ou le mot de passe n'est pas correct !" });
       });

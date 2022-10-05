@@ -170,17 +170,19 @@ Partial : Stats Top Artists / Songs
                         <img src="{{ this.images.url }}" alt="Avatar" class="rounded-circle img-top-artists">
                     </div>
                     {{/each }}
-                    {{!-- 3eme Place --}}
-                    {{!-- <div class="avatar">
+                    {{!-- 
+                      Place 
+                     <div class="avatar">
                         <img src="{{ db.items[0].images[0].url }}" alt="Avatar"
                             class="rounded-circle img-top-artists abs-4">
-                    </div> --}}
-                    {{!-- 2eme Place --}}
+                    </div> 
+                     2eme Place 
 
-                    {{!-- 1ere Place --}}
-                    {{!-- <div class="avatar">
+                     1ere Place 
+                     <div class="avatar">
                         <img src="./assets/images/jos.jpg" alt="Avatar" class="rounded-circle img-top-artists abs-6">
-                    </div> --}}
+                    </div> 
+                     --}}
                 </div>
                 {{/if}}
             </div>
@@ -188,6 +190,7 @@ Partial : Stats Top Artists / Songs
 
         {{!-- -------------------- Top Songs ----------------------------- --}}
         <div class="container mt-5 ">
+            {{#if db2}}
             <div class="row">
                 <div class="col">
                     <h5 class="fs-2">Top Songs</h5>
@@ -201,16 +204,9 @@ Partial : Stats Top Artists / Songs
                     </div>
                     <div class="mt-300">
                         <ul class="mt-3 fs-4" style="list-style-type: decimal">
-                            <li>Iverson</li>
-                            <li>Dubai</li>
-                            <li>Fais moi un vie</li>
-                            <li>Stuntmen</li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
+                            {{#each db2.items}}
+                            <li>{{this.name}}</li>
+                            {{/each }}
                         </ul>
                     </div>
                     <h5 class="text-custom">See More</h5>
@@ -223,25 +219,17 @@ Partial : Stats Top Artists / Songs
 
                             {{!-- 3eme Place --}}
                             <div class="avatar-group rel col d-flex align-items-center ">
-                                <div class="avatar">
-                                    <img src="./assets/images/fais-moi-un-vie-damso.jpg" alt="Avatar"
-                                        class="rounded-circle img-top-artists abs-7">
+                                {{#each topArrayTracks }}
+                                <div class="avatar order-{{ orderImage @index }} mt-5">
+                                    <img src="{{this.images.url}}" alt="Avatar" class="img-top-artists">
                                 </div>
-                                {{!-- 2eme Place --}}
-                                <div class="avatar">
-                                    <img src="./assets/images/dubai.jpg" alt="Avatar"
-                                        class="rounded-circle img-top-artists abs-8">
-                                </div>
-                                {{!-- 1ere Place --}}
-                                <div class="avatar">
-                                    <img src="./assets/images/ehdmra.jpg" alt="Avatar"
-                                        class="rounded-circle img-top-artists abs-9">
-                                </div>
+                                {{/each}}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            {{/if}}
         </div>
     </div>
 

@@ -7,7 +7,7 @@ const bcrypt_salt = 10;
 
 // Affichage Page Profil
 exports.getPageProfil = (req, res) => {
-  console.log("c'est moi ", req.query.q);
+  // console.log("c'est moi ", req.query.q);
   // switch (req.query.q) {
   //   case '4w':
   //     return res.render("profil");

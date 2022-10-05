@@ -304,11 +304,11 @@ app.get('/getTopArtist', async (req, res) => {
 
   const datas6M = await result.json()
   let topArray = []
-  console.log(datas6M.items);
+  console.log("Infos Artists", datas6M);
   // console.log("vla le lien d'un image", datas6M.items[0].images[1].url);
 
   datas6M.items.map((itm, i) => {
-    console.log('loop', i)
+    // console.log('loop', i)
     if (i <= 2) topArray.push({
       ...itm,
       images: itm.images[0]
@@ -318,11 +318,39 @@ app.get('/getTopArtist', async (req, res) => {
   //   console.log(item.name, index);
   // })
   // res.status(200).send({datas:datas6M})
-  console.log('ICICI', topArray);
   res.render("profil", {
     db: datas6M,
     topArray
   })
+})
+
+app.get('/getTopTracks', async (req,res) => {
+  const token = req.session.token
+  const result = await fetch(`https://api.spotify.com/v1/me/top/tracks?time_range=medium_term&limit=10`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': token,
+    },
+  })
+  
+  const datasT6M = await result.json()
+  console.log("aaaaaaaaaaaaaaaaaaaaaa", datasT6M.items[1].name);
+  let topArrayTracks = []
+  datasT6M.items.map((itm, i) => {
+    if(i <= 2) topArrayTracks.push({
+      ...itm,
+      images: itm.album.images[0]
+    })
+  })
+  
+  // res.status(200).send({datas:datasT6M})
+  
+  res.render("profil", {
+    db2: datasT6M,
+    topArrayTracks
+  })
+  
 })
 
 
