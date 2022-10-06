@@ -4,8 +4,6 @@ Partial : Stats Top Artists / Songs
 
 
 {{!-- --------------------Gestion des Tabs Ton Artists && Top Songs-------------------- --}}
-{{!-- -------------------- Top Artists && Songs ----------------------------- --}}
-
 <ul class="nav nav-pills mt-5 me-5 d-flex justify-content-end" id="pills-tab" role="tablist">
     <li class="nav-item" role="presentation">
         <form action="/getTopArtists?4w">
@@ -28,22 +26,23 @@ Partial : Stats Top Artists / Songs
     </li>
 </ul>
 
+{{!--
+---------------------------- 4 Weeks / Semaines ----------------
+--}}
+{{!-- -------------------- Top Artists ----------------------------- --}}
 
-{{!-- Tabs Content --}}
 <div class="tab-content" id="pills-tabContent">
     <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-        {{!-- ------------------------- 4 Weeks ---------------------------- --}}
-        {{!-- -------------- Classement -------------- --}}
         <div class="container mt-5 ">
             <div class="row ">
-                {{#if db}}
+                {{#if dbA4W}}
                 <div class="col">
                     <h5 class="fs-2 ">Top Artists</h5>
                     <button class="btn btn-outline-light rounded-4 mt-3 fs-5 "><i class="fa-solid fa-share-nodes "></i>
                         Share</button>
                     <div class="mt-300">
                         <ul class="mt-3 fs-4 " style="list-style-type: decimal">
-                            {{#each db.items}}
+                            {{#each dbA4W.items}}
                             <li> {{ this.name }} </li>
                             {{/each }}
                         </ul>
@@ -51,11 +50,12 @@ Partial : Stats Top Artists / Songs
                     <h5 class="text-custom mb-5">See More</h5>
                 </div>
 
-                {{!-- -------------- Avatar -------------- --}}
+
+                {{!-- -----------------------Images-------------------- --}}
                 <div class="avatar-group rel col d-flex align-items-center ">
                     {{#each topArrayArtists4W }}
                     <div class="avatar order-{{ orderImage @index }} mt-5">
-                        <img src="{{ this.images.url }}" alt="Avatar" class="rounded-circle img-top-artists">
+                        <img src="{{ this.images.url }}" alt="Avatar" class="rounded-circle img-top-artists ms-3">
                     </div>
                     {{/each }}
                 </div>
@@ -66,7 +66,7 @@ Partial : Stats Top Artists / Songs
         {{!-- -------------------- Top Songs ----------------------------- --}}
         <div class="container mt-5 ">
             <div class="row">
-                {{#if db}}
+                {{#if dbT4W}}
                 <div class="col">
                     <h5 class="fs-2">Top Songs</h5>
                     <div class="d-flex">
@@ -80,7 +80,7 @@ Partial : Stats Top Artists / Songs
                     </div>
                     <div class="mt-300">
                         <ul class="mt-3 fs-4" style="list-style-type: decimal">
-                            {{#each db.items}}
+                            {{#each dbT4W.items}}
                             <li> {{ this.name }} </li>
                             {{/each }}
                         </ul>
@@ -88,17 +88,16 @@ Partial : Stats Top Artists / Songs
                     <h5 class="text-custom">See More</h5>
                 </div>
 
-                {{!-- -------------- Avatar -------------- --}}
                 <div class="col mt-5 text-center">
                     <div class="container ">
                         <div class="row mt-resp-20">
 
-                            {{!-- 3eme Place --}}
+                            {{!-- -----------------------Images-------------------- --}}
                             <div class="avatar-group rel col d-flex align-items-center ">
                                 {{#each topArrayTracks4W }}
                                 <div class="avatar order-{{ orderImage @index }} mt-5">
                                     <img src="{{ this.images.url }}" alt="Avatar"
-                                        class="rounded-circle img-top-artists">
+                                        class="img-top-artists ms-3">
                                 </div>
                                 {{/each }}
                             </div>
@@ -112,18 +111,21 @@ Partial : Stats Top Artists / Songs
 
     </div>
     <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-        {{!-- ---------------------------- 6 Months ---------------------------- --}}
-        {{!-- -------------- Classement -------------- --}}
+
+        {{!--
+        ---------------------------- 6 Months / Mois ----------------
+        --}}
+        {{!-- -------------------- Top Artists ----------------------------- --}}
         <div class="container mt-5">
             <div class="row">
-                {{#if db}}
+                {{#if dbA6M}}
                 <div class="col">
                     <h5 class="fs-2">Top Artists</h5>
                     <button class="btn btn-outline-light rounded-4 mt-3 fs-5 "><i class="fa-solid fa-share-nodes "></i>
                         Share</button>
                     <div class="mt-300">
                         <ul class="mt-3 fs-4" style="list-style-type: decimal">
-                            {{#each db.items}}
+                            {{#each dbA6M.items}}
                             <li> {{ this.name }} </li>
                             {{/each }}
                         </ul>
@@ -137,26 +139,13 @@ Partial : Stats Top Artists / Songs
                 1 = 1
                 2 = 3
                 --}}
-                {{!-- -------------- Avatar -------------- --}}
+               {{!-- -----------------------Images-------------------- --}}
                 <div class="avatar-group rel col d-flex align-items-center classement-image-top-3">
-                    {{#each topArray }}
+                    {{#each topArrayArtists6M }}
                     <div class="avatar order-{{ orderImage @index }} mt-5">
-                        <img src="{{ this.images.url }}" alt="Avatar" class="rounded-circle img-top-artists">
+                        <img src="{{ this.images.url }}" alt="Avatar" class="rounded-circle img-top-artists ms-3">
                     </div>
                     {{/each }}
-                    {{!--
-                    Place
-                    <div class="avatar">
-                        <img src="{{ db.items[0].images[0].url }}" alt="Avatar"
-                            class="rounded-circle img-top-artists abs-4">
-                    </div>
-                    2eme Place
-
-                    1ere Place
-                    <div class="avatar">
-                        <img src="./assets/images/jos.jpg" alt="Avatar" class="rounded-circle img-top-artists abs-6">
-                    </div>
-                    --}}
                 </div>
                 {{/if}}
             </div>
@@ -164,7 +153,7 @@ Partial : Stats Top Artists / Songs
 
         {{!-- -------------------- Top Songs ----------------------------- --}}
         <div class="container mt-5 ">
-            {{#if db}}
+            {{#if dbT6M}}
             <div class="row">
                 <div class="col">
                     <h5 class="fs-2">Top Songs</h5>
@@ -178,7 +167,7 @@ Partial : Stats Top Artists / Songs
                     </div>
                     <div class="mt-300">
                         <ul class="mt-3 fs-4" style="list-style-type: decimal">
-                            {{#each db.items}}
+                            {{#each dbT6M.items}}
                             <li>{{this.name}}</li>
                             {{/each }}
                         </ul>
@@ -186,16 +175,17 @@ Partial : Stats Top Artists / Songs
                     <h5 class="text-custom">See More</h5>
                 </div>
 
-                {{!-- -------------- Avatar -------------- --}}
+                {{!-- -----------------------Images-------------------- --}}
+
                 <div class="col mt-5 text-center">
                     <div class="container ">
                         <div class="row mt-resp-20">
 
                             {{!-- 3eme Place --}}
                             <div class="avatar-group rel col d-flex align-items-center ">
-                                {{#each topArrayTracks }}
+                                {{#each topArrayTracks6M }}
                                 <div class="avatar order-{{ orderImage @index }} mt-5">
-                                    <img src="{{this.images.url}}" alt="Avatar" class="img-top-artists">
+                                    <img src="{{this.images.url}}" alt="Avatar" class="img-top-artists ms-3">
                                 </div>
                                 {{/each}}
                             </div>
@@ -212,22 +202,16 @@ Partial : Stats Top Artists / Songs
         {{!-- -------------- Classement -------------- --}}
         <div class="container mt-5">
             <div class="row">
+                {{#if dbAAL}}
                 <div class="col">
                     <h5 class="fs-2">Top Artists</h5>
                     <button class="btn btn-outline-light rounded-4 mt-3 fs-5 "><i class="fa-solid fa-share-nodes "></i>
                         Share</button>
                     <div class="mt-300">
                         <ul class="mt-3 fs-4" style="list-style-type: decimal">
-                            <li>Kekra</li>
-                            <li>Damso</li>
-                            <li>Josman</li>
-                            <li>Prime</li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
+                            {{#each dbAAL.items}}
+                            <li> {{ this.name }} </li>
+                            {{/each }}
                         </ul>
                     </div>
                     <h5 class="text-custom mb-5">See More</h5>
@@ -235,24 +219,19 @@ Partial : Stats Top Artists / Songs
 
                 {{!-- -------------- Avatar -------------- --}}
                 <div class="avatar-group rel col d-flex align-items-center ">
-                    {{!-- 3eme Place --}}
-                    <div class="avatar">
-                        <img src="./assets/images/jos.jpg" alt="Avatar" class="rounded-circle img-top-artists abs-4">
+                    {{#each topArrayArtistsAL }}
+                    <div class="avatar order-{{ orderImage @index }} mt-5">
+                        <img src="{{ this.images.url }}" alt="Avatar" class="rounded-circle img-top-artists ms-3">
                     </div>
-                    {{!-- 2eme Place --}}
-                    <div class="avatar">
-                        <img src="./assets/images/damso.jpg" alt="Avatar" class="rounded-circle img-top-artists abs-5">
-                    </div>
-                    {{!-- 1ere Place --}}
-                    <div class="avatar">
-                        <img src="./assets/images/kekra.jpeg" alt="Avatar" class="rounded-circle img-top-artists abs-6">
-                    </div>
+                    {{/each }}
                 </div>
+                {{/if}}
             </div>
         </div>
 
         {{!-- -------------------- Top Songs ----------------------------- --}}
         <div class="container mt-5 ">
+            {{#if dbTAL}}
             <div class="row">
                 <div class="col">
                     <h5 class="fs-2">Top Songs</h5>
@@ -266,16 +245,9 @@ Partial : Stats Top Artists / Songs
                     </div>
                     <div class="mt-300">
                         <ul class="mt-3 fs-4" style="list-style-type: decimal">
-                            <li>Dubai</li>
-                            <li>Fais moi un vie</li>
-                            <li>Iverson</li>
-                            <li>Stuntmen</li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
+                            {{#each dbTAL.items}}
+                            <li>{{this.name}}</li>
+                            {{/each }}
                         </ul>
                     </div>
                     <h5 class="text-custom">See More</h5>
@@ -288,25 +260,17 @@ Partial : Stats Top Artists / Songs
 
                             {{!-- 3eme Place --}}
                             <div class="avatar-group rel col d-flex align-items-center ">
-                                <div class="avatar">
-                                    <img src="./assets/images/ehdmra.jpg" alt="Avatar"
-                                        class="rounded-circle img-top-artists abs-7">
+                                {{#each topArrayTracksAL }}
+                                <div class="avatar order-{{ orderImage @index }} mt-5">
+                                    <img src="{{this.images.url}}" alt="Avatar" class="img-top-artists ms-3">
                                 </div>
-                                {{!-- 2eme Place --}}
-                                <div class="avatar">
-                                    <img src="./assets/images/fais-moi-un-vie-damso.jpg" alt="Avatar"
-                                        class="rounded-circle img-top-artists abs-8">
-                                </div>
-                                {{!-- 1ere Place --}}
-                                <div class="avatar">
-                                    <img src="./assets/images/dubai.jpg" alt="Avatar"
-                                        class="rounded-circle img-top-artists abs-9">
-                                </div>
+                                {{/each}}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            {{/if}}
         </div>
     </div>
 </div>

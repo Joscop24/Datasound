@@ -60,7 +60,6 @@ exports.getLoginSpotify = function (req, res) {
             state: state,
         })
     );
-    console.log("info cookie", req.cookie);
 };
 
 
@@ -80,7 +79,6 @@ exports.callback = (req, res) => {
 
     if (state === null ) {
         // || state !== storedState
-        console.log("bbbbbbbbbbbbbbbbbb");
         res.redirect(
             "/#" +
             querystring.stringify({
@@ -113,15 +111,19 @@ exports.callback = (req, res) => {
                     headers: { Authorization: "Bearer " + access_token },
                     json: true,
                 };
-                const data = await request.get(options, function (error, response, body) {
-                    // res.status(200).send({datas:body})
-                    console.log("Voici les infos sur mon compte Spotify", body);
-                    console.log("voici les infos concernant le token", options);
-                }
-                );
-                req.session.token = data.headers.Authorization
-                res.render("profil", { data: data });
+                const data = await request.get(options, function (error, response, body) { 
+                  const ppUser = body.images[0].url     
+                  req.session.token = data.headers.Authorization
+                  // res.status(200).send(ppUser)
+                  // console.log(body.images[0].url);
+                  res.render("profil", { data: data, body: ppUser});
 
+                  // console.log("Voici les infos sur mon compte Spotify", body);
+                    // console.log("voici les infos concernant le token", options);
+                  }
+                  );
+                  // req.session.token = data.headers.Authorization
+                  // res.render("profil", { data: data });
 
 
             } else {
@@ -223,7 +225,7 @@ exports.getTopArtist = async (req, res) => {
 ************** 6 MOIS **********************
                                             */
     // ARTISTES
-    const result = await fetch(`https://api.spotify.com/v1/me/top/artists?time_range=medium_term&limit=10`, {
+    const resultArtist6M = await fetch(`https://api.spotify.com/v1/me/top/artists?time_range=medium_term&limit=10`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -232,14 +234,14 @@ exports.getTopArtist = async (req, res) => {
     })
     // console.log("resultat", result);
   
-    const datas6M = await result.json()
-    let topArray = []
+    const datasArtist6M = await resultArtist6M.json()
+    let topArrayArtists6M = []
     // console.log("Infos Artists", datas6M);
     // console.log("vla le lien d'un image", datas6M.items[0].images[1].url);
   
-    datas6M.items.map((itm, i) => {
+    datasArtist6M.items.map((itm, i) => {
       // console.log('loop', i)
-      if (i <= 2) topArray.push({
+      if (i <= 2) topArrayArtists6M.push({
         ...itm,
         images: itm.images[0]
       })
@@ -247,18 +249,18 @@ exports.getTopArtist = async (req, res) => {
 
 
     // TRACKS
-    const resultTracks = await fetch(`https://api.spotify.com/v1/me/top/tracks?time_range=medium_term&limit=10`, {
+    const resultTracks6M = await fetch(`https://api.spotify.com/v1/me/top/tracks?time_range=medium_term&limit=10`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': token,
         },
       })
-      const datasT6M = await resultTracks.json()
+      const datasTracks6M = await resultTracks6M.json()
     //   console.log("Info Tracks", datasT6M);
-      let topArrayTracks = []
-      datasT6M.items.map((itm, i) => {
-        if(i <= 2) topArrayTracks.push({
+      let topArrayTracks6M = []
+      datasTracks6M.items.map((itm, i) => {
+        if(i <= 2) topArrayTracks6M.push({
           ...itm,
           images: itm.album.images[0]
         })
@@ -270,13 +272,57 @@ exports.getTopArtist = async (req, res) => {
                                             */
 
 
+// ARTISTES
+const resultArtistAL = await fetch(`https://api.spotify.com/v1/me/top/artists?time_range=long_term&limit=10`, {
+  method: 'GET',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': token,
+  },
+})
+// console.log("resultat", result);
+
+const datasArtistAL = await resultArtistAL.json()
+let topArrayArtistsAL = []
+// console.log("Infos Artists", datas6M);
+// console.log("vla le lien d'un image", datas6M.items[0].images[1].url);
+
+datasArtistAL.items.map((itm, i) => {
+  // console.log('loop', i)
+  if (i <= 2) topArrayArtistsAL.push({
+    ...itm,
+    images: itm.images[0]
+  })
+})
+
+// TRACKS
+const resultTracksAL = await fetch(`https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=10`, {
+  method: 'GET',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': token,
+  },
+})
+const datasTracksAL = await resultTracksAL.json()
+//   console.log("Info Tracks", datasT6M);
+let topArrayTracksAL = []
+datasTracksAL.items.map((itm, i) => {
+  if(i <= 2) topArrayTracksAL.push({
+    ...itm,
+    images: itm.album.images[0]
+  })
+})
 
 
 
+// A4W = Artists 4 Weeks
+// T4W = Tracks 4 Weeks
     res.render("profil", {
-    db: datasArtist4W,      datasTracks4W, 
-        topArrayArtists4W,  topArrayTracks4W,
-      datas6M,datasT6M, 
-      topArrayTracks, topArray
+    dbA4W: datasArtist4W, topArrayArtists4W,
+    dbT4W: datasTracks4W,  topArrayTracks4W,
+    dbA6M: datasArtist6M, topArrayArtists6M,
+    dbT6M: datasTracks6M, topArrayTracks6M,
+    dbAAL: datasArtistAL, topArrayArtistsAL,
+    dbTAL: datasTracksAL, topArrayTracksAL
     })
   };

@@ -5,25 +5,8 @@
 const bcrypt = require("bcrypt");
 const bcrypt_salt = 10;
 
-// Affichage Page Profil
-exports.getPageProfil = (req, res) => {
-  // console.log("c'est moi ", req.query.q);
-  // switch (req.query.q) {
-  //   case '4w':
-  //     return res.render("profil");
-  //     break;
-  //   case '6m':
-  //     return res.render("profil");
-  //     break;
-  //   case 'all':
-  //     return res.render("profil");
-  //     break;
-  //   default:
-  //     break
-  // }
-  
-      return res.render("profil");
-}
+// Affichage Page Profil Se Trouve dans Spotify.controller.js Pour les datas Spotify
+
 
 // Page Edit-Profil
 exports.getEditProfil = (req, res) => {
