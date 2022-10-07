@@ -78,15 +78,16 @@ exports.lostPassword = async (req, res) => {
     });
     transporter.close()
 
-    console.log("Email de confirmation de compte est bien envoyé !!", data)
-    console.log("1er token", token);
+    console.log("Email de réinitialisation de mot de passe est bien envoyé à :", resetmail)
     res.redirect('/');
   } catch (error) {
     console.log("error", error)
     res.redirect('/')
   }
-
 }
+
+
+
 // Reset Password // Réinitialisation du Mot de Passe
 exports.getPageResetPassword = (req, res) => {
   res.render("resetpassword");

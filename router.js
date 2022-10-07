@@ -84,7 +84,10 @@ router.route("/resetPassword").get(getPageResetPassword).put(resetPassword);
 router.route("/login").post(login, getConnexionUser);
 
 // Inscription
-router.route("/register").post(inscription, getInscriptionUser);
+router.route("/register")
+    .post(getInscriptionUser);
+
+
 // Activation / Verification
 router.route("/verification/:token").get(getPageVerification);
 

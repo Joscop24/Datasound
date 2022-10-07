@@ -14,12 +14,11 @@ exports.connexion = (req, res, next) => {
 
 // Connexion
 exports.login = async (req, res, next) => {
-    /*
-    if (!req.session.user) return res.redirect('/')
-    const user = await db.query(`SELECT isBan FROM user WHERE email="${req.session.user.email}"`);
-    console.log('isadmin',  user);
-    (req.session.user.isBan === 1) ? res.redirect('/') : next();
-    */
+    
+    // if (!req.session.user) return res.redirect('/')
+    // const user = await db.query(`SELECT isBan FROM user WHERE email="${req.session.user.email}"`);
+    // (req.session.user.isBan === 1) ? res.redirect('/') : next();
+    
    next()
 }
 
@@ -28,12 +27,6 @@ exports.mdpForgot = async (req, res, next) => {
     next()
 }
 
-
-// Inscription
-exports.inscription = (req, res, next) => {
-    console.log('inscription OK')
-    next()
-}
 
 // Page Profil
 exports.profil = (req, res, next) => {
