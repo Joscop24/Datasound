@@ -15,7 +15,7 @@ var request = require("request"); // "Request" library
 // Information Spotify
 var client_id = "d0f7e1ad3b7748cf9b2505355d27202e"; // Your client id
 var client_secret = "13b9507918564a3fbcd04947401d8b2c"; // Your secret
-var redirect_uri = "http://localhost:3000/callback"; // Your redirect uri
+var redirect_uri = "http://localhost:4000/callback"; // Your redirect uri
 
 // SPOTIFY
 
@@ -115,7 +115,7 @@ exports.callback = (req, res) => {
                   const ppUser = body.images[0].url     
                   req.session.token = data.headers.Authorization
                   // res.status(200).send(ppUser)
-                  // console.log(body.images[0].url);
+                  console.log(body.images[0].url);
                   res.render("profil", { data: data, body: ppUser});
 
                   // console.log("Voici les infos sur mon compte Spotify", body);

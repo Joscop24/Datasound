@@ -29,11 +29,11 @@ const swaggerUi = require('swagger-ui-express'),
 // const expressOasGenerator = require('express-oas-generator');
 // expressOasGenerator.init(app, {})
 
-const port = 3000;
 
 // Déstructuration de process.env
 const { DB_DATABASE, DB_HOST, DB_PASSWORD, DB_USER, PORT_NODE } = process.env;
 
+const port = PORT_NODE;
 
 //Import des helpers
 const { limit, ifImgExist, orderImage } = require("./helper");
