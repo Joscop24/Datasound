@@ -13,14 +13,13 @@ const { MODE } = process.env
 const { transporter } = require("../config/nodemailer");
 const jwt = require("jsonwebtoken")
 
-
 exports.getPageAuth = (req, res) => {
   res.render("connexion");
 }
 
 // Connexion du user
 exports.getConnexionUser = (req, res) => {
-  console.log('connexionUser')
+  // console.log('connexionUser')
   const { email, password } = req.body;
 
   db.query(
@@ -177,6 +176,17 @@ exports.getPageVerification = (req, res) => {
     }
   });
 }
+
+// Logout // Déconnexion
+exports.logout = (req, res) => {
+  req.session.destroy(() => {
+    res.clearCookie("poti-gato");
+    console.log("Clear Cookie session :", req.sessionID);
+    res.redirect("/");
+  });
+};
+
+
 
 // Affichage de la page Link
 exports.getPageLink = (req, res) => {

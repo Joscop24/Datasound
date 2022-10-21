@@ -36,12 +36,6 @@ Partials : Informations du compte
                 <label for="exampleFormControlInput1" class="form-label text-white fs-4">Date de Création :
                     {{user.created_at}} </label>
             </div>
-            <div class="mt-4">
-                <label for="exampleFormControlInput1" class="form-label text-white fs-4">ID :
-                    {{user.id}} </label>
-                {{!-- ID du compte --}}
-
-            </div>
         </div>
     </div>
     {{/if}}
@@ -59,12 +53,11 @@ Partials : Informations du compte
             </div>
             <hr>
             <h5 class="card-title fs-2">Se Déconnecter de Spotify</h5>
-            <p>Vous pouvez vous déconnecter lorsque vous le souhaiter, n'oubliez pas votre identifiant et votre mot de
-                passe</p>
+            <p class="d-flex justify-content-center">Afin de se reconnecter avec Spotify, veuillez aller sur la page
+                Link, pour associer votre compte Spotify avec Datasound.</p>
+            <i class="d-flex justify-content-center fa-brands fa-spotify fa-8x"></i>
             <div class="text-center">
 
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Se Déconnecter de
-                    Spotify</button>
             </div>
         </div>
 

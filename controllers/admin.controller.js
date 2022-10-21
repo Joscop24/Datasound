@@ -35,7 +35,8 @@ exports.banUser = async (req, res) => {
   const { id } = req.params;
 
   // Supression de l'article par rapport a son id
-  await db.query(`DELETE FROM user WHERE id=${id}`, function (err, data) {
+  // await db.query(`DELETE FROM user WHERE id=${id}`, function (err, data) {
+    await db.query(`UPDATE user SET isBan="1" WHERE id=${id}`, function (err, data) {
     if (err) throw err;
 
     // Redirection vers la page admin

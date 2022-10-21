@@ -15,6 +15,7 @@ const {
   lostPassword,
   getPageResetPassword,
   resetPassword,
+  logout
 } = require("./controllers/auth.controller");
 const {
   getPageProfil,
@@ -81,12 +82,13 @@ router.route("/lostpassword").post(mdpForgot, lostPassword);
 router.route("/resetPassword").get(getPageResetPassword).put(resetPassword);
 
 // Login
-router.route("/login").post(login, getConnexionUser);
+router.route("/login").post(getConnexionUser, login);
 
 // Inscription
-router.route("/register")
-    .post(getInscriptionUser);
+router.route("/register").post(getInscriptionUser);
 
+// Logout
+router.route("/logout").post(logout)
 
 // Activation / Verification
 router.route("/verification/:token").get(getPageVerification);

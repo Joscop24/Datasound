@@ -121,22 +121,6 @@ const { get } = require("./router");
 app.use("/", ROUTER);
 // ROUTE pour Swagger
 
-// CRUD CONNEXION
-// Logout // Déconnexion
-app.post("/logout", (req, res) => {
-  req.session.destroy(() => {
-    res.clearCookie("poti-gato");
-    console.log("Clear Cookie session :", req.sessionID);
-    res.redirect("/");
-  });
-});
-
-
-
-// /Forum
-// reply to comment // Répondre au commentaire
-// a faire plus tard
-
 /* ERROR 404 */
 // A Mettre a la fin
 app.get("/*", function (req, res) {

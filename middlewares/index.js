@@ -14,10 +14,14 @@ exports.connexion = (req, res, next) => {
 
 // Connexion
 exports.login = async (req, res, next) => {
-    
-    // if (!req.session.user) return res.redirect('/')
-    // const user = await db.query(`SELECT isBan FROM user WHERE email="${req.session.user.email}"`);
-    // (req.session.user.isBan === 1) ? res.redirect('/') : next();
+    console.log("AAAAAAAAAAAAAAAAAAA");
+    if (!req.session.user){
+        console.log("req.session", req.session.user);
+        return res.redirect('/')
+}
+    const user = await db.query(`SELECT isBan FROM user WHERE email="${req.session.user.email}"`);
+    console.log("ban ?", user);
+    (req.session.user.isBan === 1) ? res.redirect('/') : next();
     
    next()
 }
