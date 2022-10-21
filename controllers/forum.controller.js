@@ -5,6 +5,9 @@
 // Import Module
 // const { MODE } = process.env
 require("dotenv").config();
+const path = require("path")
+const fs= require ("fs")
+
 
 
 //PING POUR TEST UNITAIRE
@@ -103,6 +106,18 @@ exports.editComment = async (req, res) => {
 // Suppression du commentaire
 exports.deleteComment = async (req, res) => {
   const { id_comments } = req.params;
+ 
+  const [img] = await db.query (`SELECT image FROM comments WHERE id_comments=${id_comments}`)
+  console.log("le nom de mon image", img.image);
+
+  
+  if (img.image !== "default.png") {
+    pathImg = path.resolve("public/images/" + img.image)
+    fs.unlink(pathImg, (err) => {
+        if (err) throw err;
+    })
+}
+
 
   const data = await db.query(`DELETE FROM comments WHERE id_comments=${id_comments}`)
 

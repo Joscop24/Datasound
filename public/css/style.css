@@ -111,6 +111,10 @@ body {
     box-shadow: 5px 5px 15px 1px #D488E9;
 }
 
+.box-shadow-first{
+    box-shadow: 5px 5px 15px 1px #ffd700;
+}
+
 .img-custom {
     width: 125px;
     height: 125px;
