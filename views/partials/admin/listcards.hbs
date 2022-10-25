@@ -6,9 +6,9 @@ Partials : ListCards
 <div class="mh100 ">
 
     <div class="container-fluid ">
-    
+
         <div class="d-flex justify-content-around flex-wrap">
-            {{!-- 1er Card --}}
+
             {{#each db}}
             <div class="d-flex justify-content-around mt-5">
                 <div class="card bg-dark box-shadow" style="width: 18rem;">
@@ -24,14 +24,13 @@ Partials : ListCards
                         </ul>
 
                         <div class="form-check form-switch">
-                            <input class="form-check-input bg-danger" type="checkbox" role="switch" id="flexSwitchCheckChecked"
-                                checked>
+                            <input class="form-check-input bg-danger" type="checkbox" role="switch"
+                                id="flexSwitchCheckChecked" checked>
                             <label class="form-check-label" for="flexSwitchCheckChecked">is Admin</label>
                         </div>
-
                         <div class="form-check form-switch">
-
-                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked2"checked2>
+                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked2"
+                                checked2>
                             <label class="form-check-label" for="flexSwitchCheckChecked2">is Ban</label>
                         </div>
                         {{!-- <form action="" <button href="/user/:id"></button> --}}

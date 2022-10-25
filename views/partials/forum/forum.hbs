@@ -15,7 +15,7 @@ Partials : Forum
         </div>
 
         <div class="col col-md-10 row">
-            <h2 class="d-flex align-items-center mt-2">{{this.username}} + {{this.id_comments}}</h2>
+            <h2 class="d-flex align-items-center mt-2">{{this.username}}</h2>
             <p>{{this.commentary}}</p>
 
             {{!-- Condition pour l'affichage de l'image dans le commentaire --}}
@@ -71,7 +71,7 @@ Partials : Forum
                         <div class="modal-content bg-dark">
                             <div class="modal-header">
                                 <h5 class="modal-title " id="exampleModalLabel">Modifier le
-                                    message - {{this.id_comments}}
+                                    message
                                 </h5>
                                 <button type="button" class="btn-close bg-light" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
@@ -119,7 +119,7 @@ Partials : Forum
 
                             <div class="modal-body">
                                 <p class="text-center">Voulez vous vraiment supprimer le message
-                                    ?? {{this.id_comments}}</p>
+                                    ??</p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">NON</button>
