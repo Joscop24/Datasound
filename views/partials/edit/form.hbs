@@ -6,7 +6,8 @@ Partials : Header
 <div class="container mt-4">
     <div class="row">
         <div class="col-3 d-flex justify-content-center">
-            <img src="./assets/images/jazzybazz.jpeg" class="rounded-circle img-header box-shadow">
+            {{!-- <img src="./assets/images/jazzybazz.jpeg" class="rounded-circle img-header box-shadow"> --}}
+            <img src={{user.ppUser}} class="rounded-circle img-header box-shadow">
         </div>
         {{#if user}}
         <div class="col-3 d-flex align-items-center">

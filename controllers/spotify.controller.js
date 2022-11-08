@@ -62,7 +62,6 @@ exports.getLoginSpotify = function (req, res) {
 };
 
 // CallBACK
-// exports.callback =
 exports.callback = (req, res) => {
   // your application requests refresh and access tokens
   // after checking the state parameter
@@ -98,8 +97,10 @@ exports.callback = (req, res) => {
       json: true,
     };
 
-    request.post(authOptions, async function (error, response, body) {
-      if (!error && response.statusCode === 200) {
+    let pp;
+
+    request.post(authOptions, async function (error, res2, body) {
+      if (!error && res2.statusCode === 200) {
         var access_token = body.access_token,
           refresh_token = body.refresh_token;
 
@@ -110,26 +111,24 @@ exports.callback = (req, res) => {
         };
         const data = await request.get(
           options,
-          function (error, response, body) {
-            const ppUser = body.images[0].url;
-            req.session.token = data.headers.Authorization;
-            // res.status(200).send(ppUser)
-            console.log(body.images[0].url);
-            res.render("profil", { data: data, body: ppUser });
-
-            // console.log("Voici les infos sur mon compte Spotify", body);
-            // console.log("voici les infos concernant le token", options);
+          function (error, res2, body) {
+            console.log("info pp", body.images[0].url);                               
+            pp = db.query(`UPDATE user SET ppUser="${body.images[0].url}" WHERE id=${req.session.user.id}`);
+            // req.session.user.pp = body.images[0].url;
+            req.session.token = data.headers.Authorization;            
+              res.render("home", { data: data, pp })
           }
-        );
-        // req.session.token = data.headers.Authorization
-        // res.render("profil", { data: data });
-      } else {
-        res.redirect(
-          "/#" +
+          );
+          // req.session.token = data.headers.Authorization
+          // res.render("profil", { data: data });
+        } else {
+          console.log("CCCCCCCCCCCCCCcc");
+          res.redirect(
+            "/#" +
             querystring.stringify({
               error: "invalid_token",
             })
-        );
+            );
       }
     });
   }
@@ -180,12 +179,9 @@ exports.getTopArtist = async (req, res) => {
       },
     }
   );
-  // console.log("resultat", resultArtist4W);
 
   const datasArtist4W = await resultArtist4W.json();
   let topArrayArtists4W = [];
-  console.log("Infos Artists", datasArtist4W);
-  // console.log("vla le lien d'un image", datas6M.items[0].images[1].url);
 
   datasArtist4W.items.map((itm, i) => {
     if (i <= 2)
@@ -207,7 +203,6 @@ exports.getTopArtist = async (req, res) => {
     }
   );
   const datasTracks4W = await resultTracks4W.json();
-  //   console.log("Info Tracks", datasTracks4W);
   let topArrayTracks4W = [];
   datasTracks4W.items.map((itm, i) => {
     if (i <= 2)
@@ -231,15 +226,11 @@ exports.getTopArtist = async (req, res) => {
       },
     }
   );
-  // console.log("resultat", result);
 
   const datasArtist6M = await resultArtist6M.json();
   let topArrayArtists6M = [];
-  // console.log("Infos Artists", datas6M);
-  // console.log("vla le lien d'un image", datas6M.items[0].images[1].url);
 
   datasArtist6M.items.map((itm, i) => {
-    // console.log('loop', i)
     if (i <= 2)
       topArrayArtists6M.push({
         ...itm,
@@ -259,7 +250,6 @@ exports.getTopArtist = async (req, res) => {
     }
   );
   const datasTracks6M = await resultTracks6M.json();
-  //   console.log("Info Tracks", datasT6M);
   let topArrayTracks6M = [];
   datasTracks6M.items.map((itm, i) => {
     if (i <= 2)
@@ -284,15 +274,11 @@ exports.getTopArtist = async (req, res) => {
       },
     }
   );
-  // console.log("resultat", result);
 
   const datasArtistAL = await resultArtistAL.json();
   let topArrayArtistsAL = [];
-  // console.log("Infos Artists", datas6M);
-  // console.log("vla le lien d'un image", datas6M.items[0].images[1].url);
 
   datasArtistAL.items.map((itm, i) => {
-    // console.log('loop', i)
     if (i <= 2)
       topArrayArtistsAL.push({
         ...itm,
@@ -312,7 +298,6 @@ exports.getTopArtist = async (req, res) => {
     }
   );
   const datasTracksAL = await resultTracksAL.json();
-  //   console.log("Info Tracks", datasT6M);
   let topArrayTracksAL = [];
   datasTracksAL.items.map((itm, i) => {
     if (i <= 2)

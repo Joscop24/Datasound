@@ -11,7 +11,7 @@ Partials : Forum
     {{#each db}}
     <div class="col-12 row border border-white box-shadow mt-4">
         <div class="col-md-2  text-center">
-            <img src="./assets/images/default.png" alt="" class="img-custom rounded-circle mt-3">
+            <img src={{this.ppUser}} class="img-custom rounded-circle mt-2">
         </div>
 
         <div class="col col-md-10 row">
@@ -101,6 +101,7 @@ Partials : Forum
 
                 {{!-- Modal Supprimer le Message --}}
                 {{#if id_user}}
+                {{!--   --}}
                 <button type="button" class="btn border-white" data-bs-toggle="modal"
                     data-bs-target="#DeleteModal-{{this.id_comments}}"><i
                         class="fa-solid fa-trash text-white"></i></button>

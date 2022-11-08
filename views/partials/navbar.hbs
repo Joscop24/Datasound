@@ -30,9 +30,11 @@ Navbar
           <li class="nav-item">
             <a class="nav-link text-light" href="/edit-profil">Account</a>
           </li>
+          {{#if user.isAdmin}}
           <li class="nav-item">
-            <a class="nav-link text-light" href="/admin">admin</a>
+            <a class="nav-link text-light" href="/admin">Admin</a>
           </li>
+          {{/if}}
         </ul>
       </div>
       {{else}}

@@ -1,8 +1,12 @@
 /*
     Nodemailer Controlleur
 */
+require("dotenv").config();
 
 const transporter = require("../config/nodemailer");
+
+const { MAIL } = process.env;
+
 
 // Systeme d'envoie de Mail
 exports.envoiMail = async (req, res) => {
@@ -12,8 +16,8 @@ exports.envoiMail = async (req, res) => {
     if (!mail || !objet || !message) return res.redirect('/')
 
     const data = await transporter.sendMail({
-      from: '"Joris" <jorisbourdin.pro@gmail.com>',
-      to: 'jorisbourdin.pro@gmail.com',
+      from: '"Joris"' + MAIL,
+      to: mail,
       subject: `Datasound + ${objet}`,
       html: `
                   <h3> Le mail du destinataire: ${mail}</h3>
