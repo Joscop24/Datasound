@@ -46,12 +46,12 @@ const {
   test_md,
   connexion,
   link,
-  login,
+  isBan,
   inscription,
   profil,
   editprofil,
   updateProfil,
-  imAdmin,
+  isAdmin,
   ban,
   forum,
   modifComment,
@@ -82,7 +82,7 @@ router.route("/lostpassword").post(mdpForgot, lostPassword);
 router.route("/resetPassword").get(getPageResetPassword).put(resetPassword);
 
 // Login
-router.route("/login").post(getConnexionUser, login);
+router.route("/login").post(isBan, getConnexionUser);
 
 // Inscription
 router.route("/register").post(getInscriptionUser);
@@ -113,8 +113,8 @@ router.route("/update/:id").put(updateProfil, putUpdateProfil);
 /*
 // Admin Controlleur
 */
-router.route("/admin").get(getPageAdmin);
-// imAdmin
+router.route("/admin").get(isAdmin,getPageAdmin );
+
 // Supprimer les utilisateurs => à modifier pour leur empecher de se connecter
 router.route("/user/:id").delete(ban, banUser);
 

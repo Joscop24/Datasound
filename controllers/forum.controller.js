@@ -47,9 +47,7 @@ exports.sendComment = async (req, res) => {
   // console.log('sendComment 2', req.body)
   const { commentary } = req.body;
   const image = req.file ? req.file.filename : false;
-  // console.log("image", image);
   let data;
-  // console.log('sendComment 1', req.session)
 
   if (image)
     data = await db.query(`INSERT INTO comments SET commentary="${commentary}", id_user="${req.session.user.id}" , image="${image}"`)
@@ -58,11 +56,9 @@ exports.sendComment = async (req, res) => {
 
 
   // TEST UNITAIRE OU VRAI CODE
-  // console.log('before res sendComment', data);
   if (process.env.MODE === "test") {
     res.json({ data })
   } else {
-    // console.log("envoi du controller OK");
     res.redirect("back");
   }
 }
@@ -72,7 +68,6 @@ exports.getCommentId = async (req, res) => {
   const { id_comments } = req.params;
   let data;
 
-  // console.log("idie");
   data = await db.query(`SELECT * FROM user INNER JOIN comments ON user.id = comments.id_user where id_comments=${id_comments}`)
   // TEST UNITAIRE OU VRAI CODE
   if (process.env.MODE === "test") {
@@ -103,17 +98,13 @@ exports.deleteComment = async (req, res) => {
   const { id_comments } = req.params;
  
   const [img] = await db.query (`SELECT image FROM comments WHERE id_comments=${id_comments}`)
-  console.log("le nom de mon image", img.image);
-
-  
+  console.log("le nom de mon image", img.image); 
   if (img.image !== "default.png") {
     pathImg = path.resolve("public/images/" + img.image)
     fs.unlink(pathImg, (err) => {
         if (err) throw err;
     })
 }
-
-
   const data = await db.query(`DELETE FROM comments WHERE id_comments=${id_comments}`)
 
   if (process.env.MODE === "test") {

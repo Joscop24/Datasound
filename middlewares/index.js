@@ -2,111 +2,94 @@
 
 // Page Home
 exports.test_md = (req, res, next) => {
-    // if (!req.session.user) return res.redirect('/');
-    console.log('Je suis le middleware de la page home')
-    next()
-}
+  console.log("Je suis le middleware de la page home");
+  next();
+};
 // Page Connexion
 exports.connexion = (req, res, next) => {
-        console.log('je suis sur la page connexion')
-    next()
-}
+  console.log("je suis sur la page connexion");
+  next();
+};
 
 // Connexion
-exports.login = async (req, res, next) => {
-    console.log("AAAAAAAAAAAAAAAAAAA");
-    if (!req.session.user){
-        console.log("req.session", req.session.user);
-        return res.redirect('/')
+exports.isBan = async (req, res, next) => {
+    var email = req.body.email ? req.body.email : req.session.user.email
+    const user = await db.query(`SELECT id FROM user WHERE email="${email}"`);
+    const role = await db.query(`SELECT isBan FROM user WHERE id="${user[0].id}"`);
+    (role[0].isBan == 1) ? res.render('home') : next();
 }
-    const user = await db.query(`SELECT isBan FROM user WHERE email="${req.session.user.email}"`);
-    console.log("ban ?", user);
-    (req.session.user.isBan === 1) ? res.redirect('/') : next();
-    
-   next()
-}
+
+
 
 exports.mdpForgot = async (req, res, next) => {
-    console.log("mdp oublie");
-    next()
-}
-
+  console.log("mdp oublie");
+  next();
+};
 
 // Page Profil
 exports.profil = (req, res, next) => {
-    console.log('page profil')
-    next()
-}
+  console.log("page profil");
+  next();
+};
 
 // Page editprofil
 exports.editprofil = (req, res, next) => {
-    console.log('page edit-profil')
-    next()
-}
+  console.log("page edit-profil");
+  next();
+};
 
 // Update données
 exports.updateProfil = (req, res, next) => {
-    console.log("Modif effectue")
-    next()
-}
+  console.log("Modif effectue");
+  next();
+};
 
 // Page Link
 exports.link = (req, res, next) => {
-    console.log('je suis sur la page link')
-    next()
-}
+  console.log("je suis sur la page link");
+  next();
+};
 
 // Page Admin
-exports.imAdmin = async (req, res, next) => {
-    if (!req.session.user) return res.redirect('/')
-    // console.log("session user", req.session.user);
-    const user = await db.query(`SELECT isAdmin FROM user WHERE email="${req.session.user.email}"`);
-    // console.log("Etat de isAdmin" ,req.session.user.isAdmin);
-    console.log('isadmin',  user);
-    (req.session.user.isAdmin === 0) ? res.redirect('/profil') : next();
-}
+exports.isAdmin = async (req, res, next) => {
+  if (!req.session.user) return res.redirect("/");
+  const [user] = await db.query(
+    `SELECT isAdmin FROM user WHERE email="${req.session.user.email}"`
+  );
+ (user.isAdmin === 0) ? res.redirect("/edit-profil") : next();
+};
 
-/*
-// Info datas users
-exports.datasusers = (req, res, next) => {
-    console.log('balabal')
-}
-*/
+
 
 // Ban User
 exports.ban = (req, res, next) => {
-    console.log("user bien ban")
-    next()
-}
+  console.log("user bien ban");
+  next();
+};
 
 // Page Forum
 exports.forum = (req, res, next) => {
-    console.log('page Forum');
-    next()
-}
-
-
+  console.log("page Forum");
+  next();
+};
 
 // Envoi Commentaire
 exports.envoiComment = (req, res, next) => {
-    console.log('Commentaire bien envoye ');
-    next()
-}
-
+  console.log("Commentaire bien envoye ");
+  next();
+};
 
 // Modification Commentaire
 exports.modifComment = (req, res, next) => {
-    console.log('Commentaire Modifie');
-    next()
-}
-
-
+  console.log("Commentaire Modifie");
+  next();
+};
 
 // Suppression Commentaire
 exports.suppComment = (req, res, next) => {
-    console.log('Commentaire Supprime ');
-    next()
-}
+  console.log("Commentaire Supprime ");
+  next();
+};
 
 /*
 exports. = (req, res, next) => {
@@ -117,6 +100,6 @@ exports. = (req, res, next) => {
 
 // Nodemailer
 exports.nodemailer = (req, res, next) => {
-    console.log('mail envoye');
-    next()
-}
+  console.log("mail envoye");
+  next();
+};
