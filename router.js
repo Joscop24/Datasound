@@ -113,7 +113,7 @@ router.route("/update/:id").put(updateProfil, putUpdateProfil);
 /*
 // Admin Controlleur
 */
-router.route("/admin").get(isAdmin,getPageAdmin );
+router.route("/admin").get(isAdmin, getPageAdmin );
 
 // Supprimer les utilisateurs => à modifier pour leur empecher de se connecter
 router.route("/user/:id").delete(ban, banUser);

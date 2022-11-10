@@ -14,7 +14,7 @@ Partials : ListCards
                 <div class="card bg-dark box-shadow" style="width: 18rem;">
                     <div class="card-body">
                         <div class="d-flex align-items-center">
-                            <img src="./assets/images/gazo.jpeg" class="rounded-circle img-card-admin">
+                            <img src={{this.ppUser}} class="rounded-circle img-card-admin">
                             <h5 class="ms-4">{{this.username}}</h5>
                         </div>
                         <ul class="none-list mt-3">
@@ -23,7 +23,7 @@ Partials : ListCards
                             <li>{{this.email}}</li>
                         </ul>
 
-                        <div class="form-check form-switch">
+                        {{!-- <div class="form-check form-switch">
                             <input class="form-check-input bg-danger" type="checkbox" role="switch"
                                 id="flexSwitchCheckChecked" checked>
                             <label class="form-check-label" for="flexSwitchCheckChecked">is Admin</label>
@@ -32,7 +32,7 @@ Partials : ListCards
                             <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked2"
                                 checked2>
                             <label class="form-check-label" for="flexSwitchCheckChecked2">is Ban</label>
-                        </div>
+                        </div> --}}
                         {{!-- <form action="" <button href="/user/:id"></button> --}}
                     </div>
 

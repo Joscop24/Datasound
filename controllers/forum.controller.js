@@ -100,7 +100,7 @@ exports.deleteComment = async (req, res) => {
   );
   if (img.image !== "") {
     if (img.image !== "default.png") {
-      pathImg = path.resolve("public/images/" + img.image);
+     let pathImg = path.resolve("public/images/" + img.image);
       fs.unlink(pathImg, (err) => {
         if (err) throw err;
       });
@@ -116,3 +116,8 @@ exports.deleteComment = async (req, res) => {
     res.redirect("/forum");
   }
 };
+
+// condition si l'user du commentaire est bien l'id qu'il y a en session
+ 
+// SELECT user_id FROM comments WHERE id = id_comments
+// if(user_id === req.sessions.user.id)

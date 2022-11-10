@@ -109,26 +109,21 @@ exports.callback = (req, res) => {
           headers: { Authorization: "Bearer " + access_token },
           json: true,
         };
-        const data = await request.get(
-          options,
-          function (error, res2, body) {
-            console.log("info pp", body.images[0].url);                               
-            pp = db.query(`UPDATE user SET ppUser="${body.images[0].url}" WHERE id=${req.session.user.id}`);
-            // req.session.user.pp = body.images[0].url;
-            req.session.token = data.headers.Authorization;            
-              res.render("home", { data: data, pp })
-          }
+        const data = await request.get(options, function (error, res2, body) {
+          pp = db.query(
+            `UPDATE user SET ppUser="${body.images[0].url}" WHERE id=${req.session.user.id}`
           );
-          // req.session.token = data.headers.Authorization
-          // res.render("profil", { data: data });
-        } else {
-          console.log("CCCCCCCCCCCCCCcc");
-          res.redirect(
-            "/#" +
+
+          req.session.token = data.headers.Authorization;
+          res.render("home", { data: data, pp });
+        });
+      } else {
+        res.redirect(
+          "/#" +
             querystring.stringify({
               error: "invalid_token",
             })
-            );
+        );
       }
     });
   }
