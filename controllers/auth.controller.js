@@ -17,6 +17,8 @@ exports.getPageAuth = (req, res) => {
   res.render("connexion");
 }
 
+const {PORT_NODE} = process.env
+
 // Connexion du user
 exports.getConnexionUser = (req, res) => {
   // console.log('connexionUser')
@@ -72,7 +74,7 @@ exports.lostPassword = async (req, res) => {
       html: `
                   <h2> Bonjour, </h2>
                   <h5>Veuillez cliquer sur le lien ci-dessous afin de modifier votre mot de passe</h5><br>
-                  <a href='http://localhost:3000/resetpassword'> Cliquez ici </a>
+                  <a href='http://localhost:${PORT_NODE}/resetpassword'> Cliquez ici </a>
               `
     });
     transporter.close()
@@ -128,7 +130,7 @@ exports.getInscriptionUser = async (req, res) => {
         html: `
                     <h2> Bonjour, </h2>
                     <h3>Pour activer votre compte utilisateur,</h3><br>
-                    <a href='http://localhost:3000/verification/${token}'> Cliquez ici </a>
+                    <a href='http://localhost:${PORT_NODE}/verification/${token}'> Cliquez ici </a>
                 `
       }, function (err, data) {
         if (err) {
