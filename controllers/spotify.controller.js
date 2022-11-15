@@ -4,6 +4,8 @@
 //Import des Modules
 const express = require("express");
 var Buffer = require("buffer/").Buffer;
+require('dotenv').config()
+
 
 const app = express();
 
@@ -12,10 +14,14 @@ var querystring = require("querystring");
 var cookieParser = require("cookie-parser");
 var request = require("request"); // "Request" library
 
+
+const {CLIENT_ID , CLIENT_SECRET, REDIRECT} = process.env
+
+
 // Information Spotify
-var client_id = "d0f7e1ad3b7748cf9b2505355d27202e"; // Your client id
-var client_secret = "13b9507918564a3fbcd04947401d8b2c"; // Your secret
-var redirect_uri = "http://localhost:4000/callback"; // Your redirect uri
+var client_id = CLIENT_ID; // Your client id
+var client_secret = CLIENT_SECRET; // Your secret
+var redirect_uri = REDIRECT // Your redirect uri
 
 // SPOTIFY
 
